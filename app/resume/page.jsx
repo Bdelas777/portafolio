@@ -41,17 +41,17 @@ const about = {
 const experience = {
   icon: "/assets/resume/badge.svg",
   title: 'My experience',
-  description: 'I am Bernardo de la Sierra Rábago, currently pursuing a B.S. in Computer Science at Tecnológico de Monterrey with an expected graduation in June 2025. My expertise spans HTML, CSS, JavaScript, TypeScript, SwiftUI, MongoDB, GitHub, React, Prisma, Vue.js, Node.js, Docker, Express, Firebase, Flutter, VisionOS, Java, and Sprint. Notable projects include the TECuido iOS medical assistant app and leading backend development for Proyecto 99. As Vice President of SwiftTec, I promoted Swift and taught CoreML classes. Volunteering on the MAE Web Platform, I helped 3,500 monthly users. Fluent in English (B2 level), I thrive in teamwork, leadership, and problem-solving.',
+  description: 'I am Bernardo de la Sierra Rábago, pursuing a B.S. in Computer Science at Tecnológico de Monterrey, graduating in June 2025. My skills include several technologies such as JavaScript, SwiftUI, and Docker. I have worked on projects like the TECuido medical assistant app and led backend development for Proyecto 99. As Vice President of SwiftTec, I promoted Swift and taught CoreML. Volunteering for the MAE Web Platform, I helped 3,500 monthly users. Fluent in English (B2 level), I excel in teamwork, leadership, and problem-solving.',
   items: [
     { 
       company: 'MAES',
       position: 'Full Stack Developer',
-      duration:'August 2023 - present'
+      duration:'Aug 2023 - present'
     },
     { 
       company: 'Proyecto 99',
       position: 'Full Stack Developer',
-      duration:'December 2022 - February 2023'
+      duration:'Dec 2022 - Feb 2023'
     }
   ]
 }
@@ -209,11 +209,59 @@ const Resume = () => {
           <div className='min-h-[70vh] w-full'>
             {/* experience */}
             <TabsContent  value="experience" className="w-full">
-              experience
+              <div className='flex flex-col gap-[30px] text-center xl:text-left'>
+                <h3 className='text-4xl font-bold'>{experience.title}</h3>
+                <p className='max-w-[720px] text-white/60 mx-auto xl:mx-0 text-justify'>{experience.description}</p>
+                <ScrollArea className="h-[400px]">
+                  <ul className='grid grid-cols-1 xl:grid-cols-2 gap-[30px]'>
+                    {experience.items.map((item, index)=>{
+                      return (
+                        <li key={index} className='bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
+                          <span className='text-accent'>
+                            {item.duration}
+                          </span>
+                          <h3 className='text-xl max-w-[260px] min-h-[60px] text-center lg:text-left'>
+                            {item.position}
+                          </h3>
+                          <div className='flex items-center gap-3'>
+                            <span className='w-[6px] h-[6px] rounded-full bg-accent'>
+                            </span>
+                            <p className='text-white/60'>{item.company}</p>
+                          </div>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </ScrollArea>
+              </div>
             </TabsContent>
              {/* education */}
             <TabsContent  value="education" className="w-full">
-             education
+            <div className='flex flex-col gap-[30px] text-center xl:text-left'>
+                <h3 className='text-4xl font-bold'>{experience.title}</h3>
+                <p className='max-w-[720px] text-white/60 mx-auto xl:mx-0 text-justify'>{experience.description}</p>
+                <ScrollArea className="h-[400px]">
+                  <ul className='grid grid-cols-1 xl:grid-cols-2 gap-[30px]'>
+                    {experience.items.map((item, index)=>{
+                      return (
+                        <li key={index} className='bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
+                          <span className='text-accent'>
+                            {item.duration}
+                          </span>
+                          <h3 className='text-xl max-w-[260px] min-h-[60px] text-center lg:text-left'>
+                            {item.position}
+                          </h3>
+                          <div className='flex items-center gap-3'>
+                            <span className='w-[6px] h-[6px] rounded-full bg-accent'>
+                            </span>
+                            <p className='text-white/60'>{item.company}</p>
+                          </div>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </ScrollArea>
+              </div>
             </TabsContent>
             {/* skills */}
             <TabsContent  value="skills" className="w-full">
