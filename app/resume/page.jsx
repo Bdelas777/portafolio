@@ -1,6 +1,7 @@
 "use client";
 import { FaHtml5, FaCss3, FaJs, FaReact, FaBootstrap, FaVuejs, FaAngular, FaNodeJs, FaDocker, FaPython, FaJava, FaSwift, FaAws,  } from 'react-icons/fa';
-import { SiCsharp, SiTypescript, SiTailwindcss, SiNextdotjs, SiDjango, SiCplusplus, SiSpring, SiExpress, SiFlask, SiCypress, SiVitest, SiFirebase, SiMongodb, SiSass, SiPostman, SiFlutter, SiMysql, SiPostgresql, SiJira, SiAzure, SiSqlite } from 'react-icons/si';
+import { SiCsharp, SiTypescript, SiTailwindcss, SiNextdotjs, SiDjango, SiCplusplus, SiSpring, SiExpress, SiFlask, SiCypress, SiVitest, SiFirebase, SiMongodb, SiSass, SiPostman,
+  SiFlutter, SiMysql, SiPostgresql, SiJira, SiSqlite } from 'react-icons/si';
 import { Tabs, TabsContent, TabsList, TabsTrigger} from "../../components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipProvider,  TooltipTrigger } from "../../components/ui/tooltip";
 import { ScrollArea } from "../../components/ui/scroll-area";
@@ -142,7 +143,7 @@ const education = {
 
 const skills = {
   title: 'My skills',
-  description: 'I possess a diverse set of skills in web and iOS development, including proficiency in programming languages such as Swift, JavaScript, and Python. I am experienced in using frameworks and tools like SwiftUI, Vue.js, React, and Unity for developing innovative applications. Additionally, I have strong project management abilities, a solid understanding of AI and AR technologies, and a commitment to continuous learning and adapting to new challenges.',
+  description: 'I have skills in web and iOS development, proficient in Swift, JavaScript, and Python. I am experienced with frameworks like SwiftUI, Vue.js, and React for creating innovative applications. Additionally, I have strong project management abilities, a solid understanding of AI and AR technologies, and a commitment to continuous learning and adapting to new challenges.',
   skillList: [
     { icon: <FaHtml5 />, name: 'HTML 5' },
     { icon: <FaCss3 />, name: 'CSS 3' },
@@ -174,7 +175,6 @@ const skills = {
     { icon: <SiMysql />, name: 'MySQL' },
     { icon: <SiPostgresql />, name: 'PostgreSQL' },
     { icon: <SiJira />, name: 'Jira' },
-    { icon: <SiAzure />, name: 'Azure' },
     { icon: <SiSqlite />, name: 'SQLite' },
     { icon: <FaNodeJs />, name: 'Node.js' },
   ]
@@ -264,8 +264,37 @@ const Resume = () => {
               </div>
             </TabsContent>
             {/* skills */}
-            <TabsContent  value="skills" className="w-full">
-              skills 
+            <TabsContent  value="skills" className="w-full h-full">
+              <div className="flex flex-col gap-[30px]">
+                <div className='flex flex-col gap-[30px] text-center xl:text-left'>
+                  <h3 className='text-4xl font-bold'>
+                    {skills.title}
+                  </h3>
+                  <p className='max-w-[600px] text-white/60 mx-auto  text-justify xl:mx-0'>
+                    {skills.description}
+                  </p>
+                </div>
+                <ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]'>
+                  {skills.skillList.map((skill, index)=>{
+                    return (
+                      <li key={index}>
+                          <TooltipProvider delayDuration={100}>
+                            <Tooltip>
+                              <TooltipTrigger className='w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group'>
+                                <div className='text-6xl group-hover:text-accent transition-all duration-300'>{skill.icon}</div>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>
+                                  {skill.name}
+                                </p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
             </TabsContent>
             {/* about */}
             <TabsContent  value="about" className="w-full">
