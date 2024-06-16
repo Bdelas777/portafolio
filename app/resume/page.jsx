@@ -9,7 +9,7 @@ import {  motion } from "framer-motion"
 
 const about = {
     title: 'About me ',
-    description: 'I am Bernardo de la Sierra Rábago, a Computer Science student at Tecnológico de Monterrey, graduating in June 2025. I specialize in web and mobile development with expertise in HTML, CSS, JavaScript, TypeScript, SwiftUI, MongoDB, React, Vue.js, Node.js, Docker, Firebase, and more. I have experience leading projects and teams, developing AI-driven applications, and creating user-centric solutions. Passionate about technology and problem-solving, I am committed to leveraging my skills to make a positive impact.',
+    description: 'I am a Computer Systems Engineering student specializing in high school accounting, with a strong interest in web and iOS development. I am passionate about exploring new technologies and thrive in collaborative environments, whether as a team member or leader. Adaptability is one of my strengths, enabling me to excel in diverse situations, while I prioritize empathy in all professional interactions.',
     info: [
         {
           fieldname: "Name",
@@ -297,8 +297,21 @@ const Resume = () => {
               </div>
             </TabsContent>
             {/* about */}
-            <TabsContent  value="about" className="w-full">
-              about
+            <TabsContent  value="about" className="w-full text-center xl:text-left">
+              <div className='flex flex-col gap-[30px]'>
+                <h3 className='text-4xl font-bold'>{about.title}</h3>
+                <p className='max-w-[600px] text-white/60 mx-auto xl:mx-0'>{about.description}</p>
+                <ul className='grid grid-cols-1 xl:grid-cols-2 gap-y-6 max-w-[620px] mx-auto xl:mx-0'>
+                  {about.info.map((item,index)=>{
+                    return(
+                      <li key={index} className='flex items-center justify-center xl:justify-start gap-4'>
+                        <span className='text-white/60 '>{item.fieldname}</span>
+                        <span className='text-lg'>{item.fieldValue}</span>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
             </TabsContent>
           </div>
         </Tabs>
