@@ -63,7 +63,7 @@ const projects = [
       {name: 'VisionOS'},
       {name: 'OpenAi Api'},
     ],
-    image: '/assets/work/Civic.png',
+    image: '/assets/work/vision.jpg',
     live: '',
     github: '',
     youtube: 'https://drive.google.com/file/d/17sKpes78WoAsWUj6f8hjyPspKJi_RoCt/view?usp=sharing'
