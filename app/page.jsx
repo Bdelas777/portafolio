@@ -27,10 +27,16 @@ export default function Home() {
             </p>
             {/* socials */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
-              <Button variant="outline" size="lg" className="uppercase flex items-center gap-2 ">
-                <span>Download CV</span>
-                <FiDownload className="text-xl"/>
-              </Button>
+            <a href="/mycv.pdf" download="CV_Bernardo_de_la_Sierra.pdf">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="uppercase flex items-center gap-2 transition-transform transform hover:scale-105 duration-300"
+                >
+                  <span>Download CV</span>
+                  <FiDownload className="text-xl" />
+                </Button>
+              </a>
               <div className="mb-8 xl:mb-0">
                 <Socials 
                   containerStyles="flex gap-6" 
