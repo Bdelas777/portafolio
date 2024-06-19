@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import {Swiper, SwiperSlide } from "swiper/react"
 import 'swiper/css'
-import {BsArrowUpRight, BsGithub, BsYoutube} from "react-icons/bs"
+import {BsArrowUpRight, BsGithub, BsYoutube, BsX} from "react-icons/bs"
 import { Tooltip, TooltipContent, TooltipProvider,  TooltipTrigger } from "../../components/ui/tooltip";
 import Link from "next/link"
 import Image from "next/image"
@@ -101,7 +101,7 @@ const projects = [
       {name: 'Postman'},
       {name: 'Dotenv'},
     ],
-    image: '/assets/work/TEcuido.jpg',
+    image: '/assets/work/TECuido.png',
     live: 'https://apps.apple.com/mx/app/tecuido-by-dilo-en-se%C3%B1as/id6476895704',
     github: '',
     youtube: 'https://www.youtube.com/watch?v=V1En6iZ9CLc'
@@ -408,18 +408,29 @@ const projects = [
 ]
 
 const Work = () => {
-  const [ project,SetProject] = useState(projects[0])
+  const [project, setProject] = useState(projects[0]);
+  const [isImageOpen, setIsImageOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
 
   const handleSlideChange = (swiper) => {
-    const currentIndex = swiper.activeIndex
-    SetProject(projects[currentIndex])
-  }
+    const currentIndex = swiper.activeIndex;
+    setProject(projects[currentIndex]);
+  };
+
+  const openImageModal = (image) => {
+    setSelectedImage(image);
+    setIsImageOpen(true);
+  };
+
+  const closeImageModal = () => {
+    setIsImageOpen(false);
+    setSelectedImage("");
+  };
+
   return (
     <motion.section
-      initial={{opacity: 0 }} 
-      animate={{opacity: 1,
-        transition: { delay: 2.4, duration: 0.4, ease: 'easeIn' }
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeIn" } }}
       className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0"
     >
       <div className="container mx-auto">
@@ -430,107 +441,125 @@ const Work = () => {
                 {project.num}
               </div>
               <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
-                {project.title} 
+                {project.title}
               </h2>
               <h3 className=" text-[28px] font-semibold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
                 {project.category} project
               </h3>
-              <p className="text-white/60 text-justify">
-                {project.description}
-              </p>
+              <p className="text-white/60 text-justify">{project.description}</p>
               <ul className="flex gap-4  flex-wrap">
-                {project.stack.map((item, index)=>{
+                {project.stack.map((item, index) => {
                   return (
                     <li key={index} className="text-lg text-accent">
                       {item.name}
-                      {index !== project.stack.length -1 && ","}
+                      {index !== project.stack.length - 1 && ","}
                     </li>
-                  )
+                  );
                 })}
               </ul>
               <div className="border border-white/20"></div>
-                <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4">
                 {project.live && (
                   <Link href={project.live} passHref>
-                      <TooltipProvider delayDuration={100}>
-                        <Tooltip>
-                          <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                            <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Live project</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                    <TooltipProvider delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                          <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Live project</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </Link>
                 )}
                 {project.github && (
                   <Link href={project.github} passHref>
-                      <TooltipProvider delayDuration={100}>
-                        <Tooltip>
-                          <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                            <BsGithub className="text-white text-3xl group-hover:text-accent" />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Github project</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                    <TooltipProvider delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                          <BsGithub className="text-white text-3xl group-hover:text-accent" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Github project</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </Link>
                 )}
                 {project.youtube && (
                   <Link href={project.youtube} passHref>
-                      <TooltipProvider delayDuration={100}>
-                        <Tooltip>
-                          <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                            <BsYoutube className="text-white text-3xl group-hover:text-accent" />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Youtube project</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                    <TooltipProvider delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                          <BsYoutube className="text-white text-3xl group-hover:text-accent" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Youtube project</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </Link>
                 )}
-                </div>
+              </div>
             </div>
           </div>
           <div className="w-full xl:w-[50%]">
-            <Swiper 
-              spaceBetween={30} 
-              slicesPerView={1} 
+            <Swiper
+              spaceBetween={30}
+              slidesPerView={1}
               className="xl:h-[520px] mb-12"
               onSlideChange={handleSlideChange}
             >
-              {projects.map((project, index)=>{
+              {projects.map((project, index) => {
                 return (
-                  <SwiperSlide key={index} className="w-full ">
-                    <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/20">
+                  <SwiperSlide key={index} className="w-full">
+                    <div
+                      className="h-[460px] relative group flex justify-center items-center bg-pink-50/20 cursor-pointer"
+                      onClick={() => openImageModal(project.image)}
+                    >
                       <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
                       <div className="relative w-full h-full">
-                        <Image 
-                          src={project.image} 
-                          fill l
+                        <Image
+                          src={project.image}
+                          layout="fill"
                           className="object-cover"
                           alt="Image project"
                         />
                       </div>
                     </div>
-                  </SwiperSlide> 
-                )
+                  </SwiperSlide>
+                );
               })}
-              <WorkSliderBtns 
-              containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] 
-              xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
-              btnStyles="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px]
-              h-[44px] flex justify-center items-center transition-all "
-              /> 
+              <WorkSliderBtns
+                containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
+                btnStyles="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
+              />
             </Swiper>
-          </div> 
+          </div>
         </div>
       </div>
+      {isImageOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+          <div className="relative bg-white p-4 rounded-lg">
+            <button
+              className="absolute top-4 right-4  rounded-full bg-blue-500 text-3xl"
+              onClick={closeImageModal}
+            >
+              <BsX />
+            </button>
+            <Image
+              src={selectedImage}
+              width={800}
+              height={600}
+              className="object-contain"
+              alt="Full size image"
+            />
+          </div>
+        </div>
+      )}
     </motion.section>
-  )
-}
+  );
+};
 
-export default Work
+export default Work;
