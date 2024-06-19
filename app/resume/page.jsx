@@ -17,7 +17,7 @@ const about = {
         },
         {
           fieldname: "Phone",
-          fieldValue: "3+ Years"
+          fieldValue: "(52+) 231 205 2221"
         },
         {
           fieldname: "Instagram",
@@ -309,6 +309,7 @@ const Resume = () => {
                     {skills.description}
                   </p>
                 </div>
+                <ScrollArea className="h-[400px]">
                 <ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]'>
                   {skills.skillList.map((skill, index)=>{
                     return (
@@ -329,6 +330,7 @@ const Resume = () => {
                     )
                   })}
                 </ul>
+                </ScrollArea>
               </div>
             </TabsContent>
             {/* about */}
