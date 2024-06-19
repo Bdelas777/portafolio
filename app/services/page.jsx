@@ -9,19 +9,19 @@ const services = [
     num: "01",
     title: "Web Development",
     description: "Experienced Full Stack Developer proficient in front-end technologies including Next.js, Vue.js, Angular, and React, as well as back-end frameworks like C#, Flask, Django, and Express. Adept at building robust, scalable web applications with a focus on seamless user experiences and efficient server-side performance.",
-    href: ""
+    href: "https://d8vd0r6uuds8z.cloudfront.net/"
   },
   {
     num: "02",
     title: "Mobile developer: IOS",
     description: "Skilled iOS Developer proficient in SwiftUI, MapKit, UIKit, VisionOS, RealityKit, AVFoundation, and SpriteKit. Experienced in using the MVVM (Model-View-ViewModel) architecture to build robust and innovative mobile applications.",
-    href: ""
+    href: "https://apps.apple.com/mx/app/tecuido-by-dilo-en-se%C3%B1as/id6476895704"
   },
   {
     num: "03",
     title: "Product Manager",
     description: "Experienced Product Manager adept in Agile(Scrum and Kanban) and Waterfall methodologies, utilizing tools like Jira, Notion, Azure, and Trello. Skilled in leading cross-functional teams, managing project timelines, and delivering high-quality products efficientl",
-    href: ""
+    href: "https://maes.mx/student/home#/inicio"
   },
 ];
 

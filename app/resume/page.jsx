@@ -17,7 +17,7 @@ const about = {
         },
         {
           fieldname: "Phone",
-          fieldValue: "3+ Years"
+          fieldValue: "(52+) 231 205 2221"
         },
         {
           fieldname: "Instagram",
@@ -180,6 +180,38 @@ const skills = {
   ]
 };
 
+const awards = {
+  title: 'My awards',
+  description: 'I have been recognized for my dedication and impact in technology and social development, receiving awards such as Outstanding Trajectory in Entrepreneurship by EmprediemientoTec, Outstanding Student by Tec de Monterrey, the Swift Student Challenge by Apple, and Software and Social Impact by expoIngenerias. I also received a scholarship for academic talent from Tec de Monterrey.',
+  items: [
+    { 
+      awarded: 'Awarded by EmprediemientoTec',
+      title: 'Outstanding trajectory in entrepreneurship',
+      Date:'June 2024'
+    },
+    { 
+      awarded: 'Awarded by Tec de Monterrey',
+      title: 'Outstanding student',
+      Date:'May 2024'
+    },
+    { 
+      awarded: 'Awarded by Apple',
+      title: 'Swift Student Challenge 2024',
+      Date:'May 2024'
+    },
+    { 
+      awarded: 'Awarded by expoIngenerias',
+      title: 'Software and Social impact',
+      Date:'December 2023'
+    },
+    { 
+      awarded: 'Awarded by Tec de Monterrey',
+      title: 'Scholarship for academic talent',
+      Date:'August 2021'
+    },
+    
+  ]
+}
 
 const Resume = () => {
   return (
@@ -204,6 +236,9 @@ const Resume = () => {
             </TabsTrigger>
             <TabsTrigger value="about">
               About me
+            </TabsTrigger>
+            <TabsTrigger value="awards">
+              Awards
             </TabsTrigger>
           </TabsList>
           <div className='min-h-[70vh] w-full'>
@@ -274,6 +309,7 @@ const Resume = () => {
                     {skills.description}
                   </p>
                 </div>
+                <ScrollArea className="h-[400px]">
                 <ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]'>
                   {skills.skillList.map((skill, index)=>{
                     return (
@@ -294,6 +330,7 @@ const Resume = () => {
                     )
                   })}
                 </ul>
+                </ScrollArea>
               </div>
             </TabsContent>
             {/* about */}
@@ -311,6 +348,33 @@ const Resume = () => {
                     )
                   })}
                 </ul>
+              </div>
+            </TabsContent>
+            <TabsContent  value="awards" className="w-full">
+             <div className='flex flex-col gap-[30px] text-center xl:text-left'>
+                <h3 className='text-4xl font-bold'>{awards.title}</h3>
+                <p className='max-w-[720px] text-white/60 mx-auto xl:mx-0 text-justify'>{awards.description}</p>
+                <ScrollArea className="h-[400px]">
+                  <ul className='grid grid-cols-1 xl:grid-cols-2 gap-[30px]'>
+                    {awards.items.map((item, index)=>{
+                      return (
+                        <li key={index} className='bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
+                          <span className='text-accent'>
+                            {item.Date}
+                          </span>
+                          <h3 className='text-xl max-w-[280px] min-h-[60px] text-center lg:text-left'>
+                            {item.title}
+                          </h3>
+                          <div className='flex items-center gap-3'>
+                            <span className='w-[6px] h-[6px] rounded-full bg-accent'>
+                            </span>
+                            <p className='text-white/60'>{item.awarded}</p>
+                          </div>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </ScrollArea>
               </div>
             </TabsContent>
           </div>
