@@ -68,6 +68,11 @@ const education = {
       duration:'August 2021 - present'
     },
     { 
+      institution: 'Udemy',
+      degree: 'CI/CD with Azure DevOps ',
+      duration:'Jul 2024'
+    },
+    { 
       institution: 'University of Michigan',
       degree: ' Database Architecture ,Scale and NoSQL ',
       duration:'May 2024'
