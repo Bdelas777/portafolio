@@ -27,7 +27,7 @@ export default function Home() {
             </p>
             {/* socials */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
-            <a href="/mycv.pdf" download="CV_Bernardo_de_la_Sierra.pdf">
+            <a href="/CV_Bernardo_de_la_Sierra.pdf" download="CV_Bernardo_de_la_Sierra.pdf">
                 <Button 
                   variant="outline" 
                   size="lg" 
