@@ -142,7 +142,6 @@ const education = {
       degree: 'Introduction to cyber security',
       duration:'June 2020'
     },
-   
   ]
 }
 
