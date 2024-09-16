@@ -49,7 +49,7 @@ const projects = [
       {name: 'Html 5'},
     ],
     image: '/assets/work/MAE.png',
-    live: 'https://maes.mx/student/home#/inicio',
+    live: 'https://maes.mx/',
     github: '',
     youtube: ''
   },
@@ -404,6 +404,21 @@ const projects = [
     image: '/assets/work/isr.png',
     live: '',
     github: 'https://github.com/Bdelas777/Salario2020/tree/main',
+    youtube: ''
+  },
+  {
+    num: '22',
+    category:"Full Stack",
+    title:"ConsoliBanco",
+    description:"ConsoliBanco allows users to securely connect multiple bank accounts, view their total balance, review recent and categorized transactions, and transfer funds between accounts. Additionally, it generates financial analysis charts and offers tools to create personalized financial plans. It includes a chatbot for assistance, real-time support, and an interface adaptable to mobile devices.",
+    stack: [
+      {name: 'Python'},
+      {name: 'PIL'},
+      {name: 'Matplotlib'},
+    ],
+    image: '/assets/work/ConsoliBanco.png',
+    live: 'https://consoli-banco.vercel.app/sign-in',
+    github: 'https://github.com/Bdelas777/ConsoliBanco',
     youtube: ''
   },
   
