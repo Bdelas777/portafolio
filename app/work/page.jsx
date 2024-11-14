@@ -407,14 +407,18 @@ const projects = [
     youtube: ''
   },
   {
-    num: '22',
+    num: '23',
     category:"Full Stack",
     title:"ConsoliBanco",
     description:"ConsoliBanco allows users to securely connect multiple bank accounts, view their total balance, review recent and categorized transactions, and transfer funds between accounts. Additionally, it generates financial analysis charts and offers tools to create personalized financial plans. It includes a chatbot for assistance, real-time support, and an interface adaptable to mobile devices.",
     stack: [
-      {name: 'Python'},
-      {name: 'PIL'},
-      {name: 'Matplotlib'},
+      {name: 'Next.js'},
+      {name: 'TypeScript'},
+      {name: 'Appwrite'},
+      {name: 'Plaid'},
+      {name: 'Dwolla'},
+      {name: 'Gemini'},
+      {name: 'Sentry'},
     ],
     image: '/assets/work/ConsoliBanco.png',
     live: 'https://consoli-banco.vercel.app/sign-in',
