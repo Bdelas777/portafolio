@@ -45,14 +45,14 @@ const experience = {
   description: 'I am Bernardo de la Sierra Rábago, pursuing a B.S. in Computer Science at Tecnológico de Monterrey, graduating in June 2025. My skills include several technologies such as JavaScript, SwiftUI, and Docker. I have worked on projects like the TECuido medical assistant app and led backend development for Proyecto 99. As Vice President of SwiftTec, I promoted Swift and taught CoreML. Volunteering for the MAE Web Platform, I helped 3,500 monthly users. Fluent in English (B2 level), I excel in teamwork, leadership, and problem-solving.',
   items: [
     { 
-      company: 'Wizelien',
+      company: 'Wizeline',
       position: 'Intern Full Stack ',
-      duration:'Aug 2024 - Dec 3024'
+      duration:'Aug 2024 - Dec 2024'
     },
     { 
       company: 'Tec de Monterrey',
       position: 'Ios Developer',
-      duration:'Aug 2024 - present'
+      duration:'Aug 2024 - Dec 2024'
     },
     { 
       company: 'MAES',
@@ -79,7 +79,7 @@ const education = {
     },
     { 
       institution: 'AWS',
-      degree: 'AWS Certified Cloud Practitioner',
+      degree: 'AWS Certified Cloud Practioner',
       duration:'Aug 2024'
     },
     { 
@@ -208,6 +208,11 @@ const awards = {
   title: 'My awards',
   description: 'I have been recognized for my dedication and impact in technology and social development, receiving awards such as Outstanding Trajectory in Entrepreneurship by EmprediemientoTec, Outstanding Student by Tec de Monterrey, the Swift Student Challenge by Apple, and Software and Social Impact by expoIngenerias. I also received a scholarship for academic talent from Tec de Monterrey.',
   items: [
+    { 
+      awarded: 'Awarded by expoIngenerias',
+      title: 'Software ',
+      Date:'December 2024'
+    },
     { 
       awarded: 'Awarded by Tec de Monterrey',
       title: 'Outstanding student',
