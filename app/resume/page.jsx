@@ -46,6 +46,11 @@ const experience = {
   items: [
     { 
       company: 'Wizeline',
+      position: 'Intern Software Developer ',
+      duration:'Feb 2025'
+    },
+    { 
+      company: 'Wizeline',
       position: 'Intern Full Stack ',
       duration:'Aug 2024 - Dec 2024'
     },
@@ -75,7 +80,7 @@ const education = {
     { 
       institution: 'Tecnológico de Monterrey',
       degree: 'Bachelor in Computer Science',
-      duration:'August 2021 - present'
+      duration:'August 2021 - June 2025'
     },
     { 
       institution: 'AWS',
@@ -208,6 +213,17 @@ const awards = {
   title: 'My awards',
   description: 'I have been recognized for my dedication and impact in technology and social development, receiving awards such as Outstanding Trajectory in Entrepreneurship by EmprediemientoTec, Outstanding Student by Tec de Monterrey, the Swift Student Challenge by Apple, and Software and Social Impact by expoIngenerias. I also received a scholarship for academic talent from Tec de Monterrey.',
   items: [
+
+    { 
+      awarded: 'Awarded by Apple',
+      title: 'Swift Student Challenge 2025',
+      Date:'April 2025'
+    },
+    { 
+      awarded: 'Awarded by Tec de Monterrey',
+      title: 'Outstanding student',
+      Date:'March 2025'
+    },
     { 
       awarded: 'Awarded by expoIngenerias',
       title: 'Software ',
