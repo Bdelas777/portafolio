@@ -45,9 +45,19 @@ const experience = {
   description: 'I am Bernardo de la Sierra Rábago, pursuing a B.S. in Computer Science at Tecnológico de Monterrey, graduating in June 2025. My skills include several technologies such as JavaScript, SwiftUI, and Docker. I have worked on projects like the TECuido medical assistant app and led backend development for Proyecto 99. As Vice President of SwiftTec, I promoted Swift and taught CoreML. Volunteering for the MAE Web Platform, I helped 3,500 monthly users. Fluent in English (B2 level), I excel in teamwork, leadership, and problem-solving.',
   items: [
     { 
-      company: 'Wizeline',
+      company: 'C3.ai',
+      position: 'Software Applications ',
+      duration:'Jan 2025 '
+    },
+    { 
+      company: 'KPMG',
+      position: 'Auditor TI',
+      duration:'June 2025 - Dec 2025'
+    },
+    { 
+      company: 'Cydsa',
       position: 'Intern Software Developer ',
-      duration:'Feb 2025'
+      duration:'Feb 2025 - June 2025'
     },
     { 
       company: 'Wizeline',
