@@ -225,6 +225,11 @@ const awards = {
   items: [
 
     { 
+  awarded: 'Honor Mention of Excellence',
+  title: 'Top 5% of the Program at ITESM',
+  Date: 'July 2025'
+},
+    { 
       awarded: 'Awarded by Apple',
       title: 'Swift Student Challenge 2025',
       Date:'April 2025'
