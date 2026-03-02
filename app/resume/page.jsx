@@ -47,7 +47,7 @@ const experience = {
     { 
       company: 'C3.ai',
       position: 'Software Applications ',
-      duration:'Jan 2025 '
+      duration:'Jan 2026 - Feb 2026'
     },
     { 
       company: 'KPMG',

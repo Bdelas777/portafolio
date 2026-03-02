@@ -425,6 +425,23 @@ const projects = [
     github: 'https://github.com/Bdelas777/ConsoliBanco',
     youtube: ''
   },
+  {
+  num: '24',
+  category: "full stack",
+  title: "CancerMama",
+  description: "CancerMama is a full-stack health application powered by AI that analyzes medical images using CNN models and provides personalized health recommendations. Built with React + TypeScript + Vite on the frontend and Flask + Python on the backend.",
+  stack: [
+    { name: 'Flask' },
+    { name: 'Python' },
+    { name: 'React' },
+    { name: 'TypeScript' },
+    { name: 'Vite' },
+  ],
+  image: '/assets/work/cancer.png',
+  live: '',
+  github: 'https://github.com/Bdelas777/CancerMama',
+  youtube: ''
+},
   
 ]
 
