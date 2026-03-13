@@ -259,11 +259,6 @@ const ProjectModal = ({ project, onClose }) => {
                 {cat.icon} {cat.label}
               </span>
             </div>
-
-            {/* Num watermark */}
-            <div className="absolute bottom-4 right-6 text-[80px] font-black leading-none text-white/[0.07] select-none">
-              {project.num}
-            </div>
           </div>
 
           {/* Content */}
@@ -289,7 +284,6 @@ const ProjectModal = ({ project, onClose }) => {
               {!project.live && !project.github && !project.youtube && (
                 <span className="text-xs text-white/25 italic">No public links available</span>
               )}
-              
             </div>
           </div>
         </motion.div>
@@ -364,11 +358,6 @@ const Work = () => {
                     </span>
                   </div>
 
-                  {/* Num watermark */}
-                  <div className="absolute bottom-3 right-4 text-[52px] font-black leading-none text-white/[0.1] select-none pointer-events-none">
-                    {project.num}
-                  </div>
-
                   {/* Hover CTA overlay */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
                     <div className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-primary text-xs font-black uppercase tracking-[0.1em] shadow-lg shadow-accent/30 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
@@ -410,14 +399,14 @@ const Work = () => {
         </div>
 
         {/* ══════════════════════════════════════════════════
-            MORE PROJECTS — divider
+            MORE PROJECTS — section label (mismo estilo que Featured)
         ══════════════════════════════════════════════════ */}
-        <div className="flex items-center gap-4 mb-10">
-          <div className="flex-1 h-px bg-white/8" />
-          <div className="px-5 py-2 rounded-full border border-white/10 bg-white/3">
-            <span className="text-white/35 text-xs font-bold uppercase tracking-[0.22em]">More Projects</span>
-          </div>
-          <div className="flex-1 h-px bg-white/8" />
+        <div className="flex items-center gap-3 mb-8">
+          <span className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/8 border border-white/15 text-white/70 text-[11px] font-black uppercase tracking-[0.18em]">
+            📁 More Projects
+          </span>
+          <div className="flex-1 h-px bg-gradient-to-r from-white/15 to-transparent" />
+          <span className="text-white/20 text-xs font-mono">{otherProjects.length} projects</span>
         </div>
 
         {/* ══════════════════════════════════════════════════
@@ -500,11 +489,6 @@ const Work = () => {
                       <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-black/65 backdrop-blur-sm border border-white/20 text-white text-xs font-semibold">
                         View details →
                       </div>
-                    </div>
-
-                    {/* Num watermark */}
-                    <div className="absolute bottom-2 right-3 font-black text-4xl text-white/[0.08] select-none z-10 leading-none">
-                      {project.num}
                     </div>
                   </div>
 
