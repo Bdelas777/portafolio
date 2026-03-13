@@ -1,7 +1,7 @@
 "use client"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
-import { BsArrowUpRight, BsGithub, BsYoutube, BsX, BsStarFill, BsChevronLeft, BsChevronRight } from "react-icons/bs"
+import { BsArrowUpRight, BsGithub, BsYoutube, BsX, BsStarFill } from "react-icons/bs"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/ui/tooltip"
 import Link from "next/link"
 import Image from "next/image"
@@ -289,8 +289,11 @@ const ProjectModal = ({ project, onClose }) => {
               {!project.live && !project.github && !project.youtube && (
                 <span className="text-xs text-white/25 italic">No public links available</span>
               )}
-              <button onClick={onClose} className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200 font-medium">
-                Close esc
+              <button
+                onClick={onClose}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/8 border border-white/15 text-white/70 text-xs font-bold hover:bg-white/15 hover:text-white hover:border-white/30 transition-all duration-200"
+              >
+                <BsX className="text-base" /> Close
               </button>
             </div>
           </div>
@@ -302,15 +305,8 @@ const ProjectModal = ({ project, onClose }) => {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 const Work = () => {
-  const [activeIndex, setActiveIndex] = useState(0)
   const [activeCategory, setActiveCategory] = useState(categories[0])
   const [modalProject, setModalProject] = useState(null)
-
-  const prev = () => setActiveIndex(i => (i - 1 + featuredProjects.length) % featuredProjects.length)
-  const next = () => setActiveIndex(i => (i + 1) % featuredProjects.length)
-
-  const hero = featuredProjects[activeIndex]
-  const thumbs = featuredProjects.filter((_, i) => i !== activeIndex)
   const categoryProjects = otherProjects.filter(p => p.category === activeCategory)
 
   return (
@@ -333,160 +329,87 @@ const Work = () => {
         </div>
 
         {/* ══════════════════════════════════════════════════
-            HERO FEATURED CARD
+            FEATURED — 6 Cards Grid
         ══════════════════════════════════════════════════ */}
-        <div className="relative mb-5">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={hero.num}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.35 }}
-              className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer group"
-              style={{ height: 'clamp(320px, 50vw, 520px)' }}
-              onClick={() => setModalProject(hero)}
-            >
-              {/* BG image */}
-              <Image
-                src={hero.image}
-                layout="fill"
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                alt={hero.title}
-                priority
-              />
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-20">
+          {featuredProjects.map((project, index) => {
+            const cat = categoryMeta[project.category] || { label: project.category, icon: "📁" }
+            return (
+              <motion.div
+                key={project.num}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="group relative flex flex-col rounded-2xl overflow-hidden border border-white/12 bg-white/[0.04] cursor-pointer shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] hover:border-accent/50 transition-all duration-350"
+                onClick={() => setModalProject(project)}
+              >
+                {/* Accent glow on hover */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-350 pointer-events-none"
+                  style={{ boxShadow: 'inset 0 0 40px rgba(var(--accent-rgb,200,200,0),0.07)' }} />
 
-              {/* Gradient overlays */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-black/10" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                {/* Image */}
+                <div className="relative h-[220px] overflow-hidden flex-shrink-0">
+                  <Image
+                    src={project.image}
+                    layout="fill"
+                    className="object-cover transition-transform duration-600 group-hover:scale-[1.07]"
+                    alt={project.title}
+                  />
+                  {/* Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
-                <motion.div
-                  key={`info-${hero.num}`}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                >
-                  {/* Featured + category badges */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent text-primary text-[10px] font-black uppercase tracking-[0.14em] shadow-lg shadow-accent/30">
-                      <BsStarFill className="text-[8px]" /> Featured
+                  {/* Top badges */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
+                    <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-primary text-[9px] font-black uppercase tracking-[0.12em] shadow-md shadow-accent/40">
+                      <BsStarFill className="text-[7px]" /> Featured
                     </span>
-                    <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/65 text-[10px] font-bold uppercase tracking-[0.12em]">
-                      {(categoryMeta[hero.category] || {}).icon} {(categoryMeta[hero.category] || {}).label || hero.category}
+                    <span className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/15 text-white/70 text-[9px] font-bold uppercase tracking-[0.1em]">
+                      {cat.icon} {cat.label}
                     </span>
                   </div>
 
-                  {/* Title */}
-                  <h2 className="text-4xl md:text-6xl font-black text-white leading-none tracking-tight mb-3">
-                    {hero.title}
-                  </h2>
+                  {/* Num watermark */}
+                  <div className="absolute bottom-3 right-4 text-[52px] font-black leading-none text-white/[0.1] select-none pointer-events-none">
+                    {project.num}
+                  </div>
 
-                  {/* Description */}
-                  <p className="text-white/60 text-sm md:text-base max-w-xl leading-relaxed mb-5 hidden md:block">
-                    {hero.description}
-                  </p>
+                  {/* Hover CTA overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
+                    <div className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-primary text-xs font-black uppercase tracking-[0.1em] shadow-lg shadow-accent/30 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      View details <BsArrowUpRight className="text-[11px]" />
+                    </div>
+                  </div>
+                </div>
 
-                  {/* Stack pills */}
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {hero.stack.slice(0, 7).map((s, i) => (
-                      <span key={i} className="text-[11px] font-semibold text-accent/80 bg-black/50 backdrop-blur-sm border border-accent/25 px-2.5 py-0.5 rounded-lg">
+                {/* Card body */}
+                <div className="flex flex-col flex-1 p-5">
+                  <h3 className="text-xl font-black text-white leading-tight mb-1.5 tracking-tight">{project.title}</h3>
+                  <p className="text-white/45 text-xs leading-relaxed mb-4 line-clamp-2">{project.description}</p>
+
+                  {/* Stack */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.stack.slice(0, 5).map((s, i) => (
+                      <span key={i} className="text-[10px] font-semibold text-accent/75 bg-accent/8 border border-accent/18 px-2 py-0.5 rounded-lg">
                         {s.name}
                       </span>
                     ))}
-                    {hero.stack.length > 7 && (
-                      <span className="text-[11px] text-white/30 px-2 py-0.5">+{hero.stack.length - 7} more</span>
+                    {project.stack.length > 5 && (
+                      <span className="text-[10px] text-white/30 px-1.5 py-0.5 rounded-lg bg-white/5 border border-white/8">
+                        +{project.stack.length - 5}
+                      </span>
                     )}
                   </div>
 
-                  {/* Links + CTA */}
-                  <div className="flex items-center gap-4">
-                    <ProjectLinks project={hero} />
-                    <button
-                      onClick={e => { e.stopPropagation(); setModalProject(hero) }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/8 backdrop-blur-sm border border-white/15 text-white/70 text-xs font-semibold hover:bg-white/15 hover:text-white hover:border-white/30 transition-all duration-200"
-                    >
-                      View details →
-                    </button>
+                  {/* Bottom row: links */}
+                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/8">
+                    <ProjectLinks project={project} />
+                    <span className="text-[10px] text-white/25 font-medium group-hover:text-accent/60 transition-colors duration-200">
+                      Click to expand →
+                    </span>
                   </div>
-                </motion.div>
-              </div>
-
-              {/* Nav arrows */}
-              <button
-                onClick={e => { e.stopPropagation(); prev() }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-black/50 backdrop-blur-sm border border-white/12 flex items-center justify-center text-white/60 hover:text-white hover:bg-black/75 hover:border-white/25 transition-all duration-200 z-10"
-              >
-                <BsChevronLeft />
-              </button>
-              <button
-                onClick={e => { e.stopPropagation(); next() }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-black/50 backdrop-blur-sm border border-white/12 flex items-center justify-center text-white/60 hover:text-white hover:bg-black/75 hover:border-white/25 transition-all duration-200 z-10"
-              >
-                <BsChevronRight />
-              </button>
-
-              {/* Large num watermark */}
-              <div className="absolute top-6 right-8 text-[120px] font-black leading-none text-white/[0.05] select-none pointer-events-none">
-                {hero.num}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-4">
-            {featuredProjects.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveIndex(i)}
-                className={`rounded-full transition-all duration-300 ${i === activeIndex ? 'w-7 h-2 bg-accent' : 'w-2 h-2 bg-white/18 hover:bg-white/35'}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* ══════════════════════════════════════════════════
-            FEATURED — thumbnail strip (5 others)
-        ══════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-20">
-          {featuredProjects.map((p, i) => {
-            const isActive = i === activeIndex
-            const cat = categoryMeta[p.category] || { label: p.category, icon: "📁" }
-            return (
-              <motion.button
-                key={p.num}
-                onClick={() => setActiveIndex(i)}
-                whileHover={{ y: -3, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`
-                  relative rounded-2xl overflow-hidden border transition-all duration-300 text-left group
-                  ${isActive
-                    ? 'border-accent shadow-[0_0_20px_rgba(var(--accent-rgb,200,200,0),0.25)] ring-1 ring-accent/40'
-                    : 'border-white/8 hover:border-white/25'
-                  }
-                `}
-                style={{ height: '130px' }}
-              >
-                <Image src={p.image} layout="fill" className="object-cover transition-transform duration-500 group-hover:scale-105" alt={p.title} />
-                <div className={`absolute inset-0 transition-opacity duration-300 ${isActive ? 'bg-gradient-to-t from-black/75 via-black/20 to-accent/10' : 'bg-gradient-to-t from-black/75 via-black/15 to-transparent'}`} />
-
-                {/* Active glow top border */}
-                {isActive && <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent" />}
-
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <p className={`text-[11px] font-bold leading-tight transition-colors ${isActive ? 'text-white' : 'text-white/70'}`}>
-                    {p.title}
-                  </p>
-                  <p className="text-[9px] text-white/35 mt-0.5 font-medium">{cat.icon} {cat.label}</p>
                 </div>
-
-                {isActive && (
-                  <div className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
-                    <BsStarFill className="text-primary text-[7px]" />
-                  </div>
-                )}
-              </motion.button>
+              </motion.div>
             )
           })}
         </div>
