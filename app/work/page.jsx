@@ -154,6 +154,18 @@ const allProjects = [
     stack: [{ name: 'Flask' }, { name: 'Python' }, { name: 'React' }, { name: 'TypeScript' }, { name: 'Vite' }],
     image: '/assets/work/cancer.png', live: '', github: 'https://github.com/Bdelas777/CancerMama', youtube: ''
   },
+  {
+    num: '25', category: "investigation", title: "Chat Whats", featured: false,
+    description: "The study of genomes using R involves leveraging statistical and computational tools to analyze large-scale genomic data.",
+    stack: [{ name: 'Python' },{ name: 'Flask' },{ name: 'Azure' }],
+    image: '/assets/work/Whats.png', live: '', github: 'https://github.com/Bdelas777/WhatsApp', youtube: ''
+  },
+  {
+    num: '26', category: "investigation", title: "Compilador", featured: false,
+    description: "Compilador.",
+    stack: [{ name: 'Python' }],
+    image: '/assets/work/Compi.png', live: '', github: 'https://github.com/Bdelas777/CompiladoresElda', youtube: ''
+  },
 ]
 
 const featuredProjects = allProjects.filter(p => p.featured)
