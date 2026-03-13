@@ -289,12 +289,7 @@ const ProjectModal = ({ project, onClose }) => {
               {!project.live && !project.github && !project.youtube && (
                 <span className="text-xs text-white/25 italic">No public links available</span>
               )}
-              <button
-                onClick={onClose}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/8 border border-white/15 text-white/70 text-xs font-bold hover:bg-white/15 hover:text-white hover:border-white/30 transition-all duration-200"
-              >
-                <BsX className="text-base" /> Close
-              </button>
+              
             </div>
           </div>
         </motion.div>
