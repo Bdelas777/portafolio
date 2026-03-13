@@ -1,32 +1,23 @@
 "use client"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
-import { Swiper, SwiperSlide } from "swiper/react"
-import 'swiper/css'
-import { BsArrowUpRight, BsGithub, BsYoutube, BsX, BsStarFill } from "react-icons/bs"
+import { BsArrowUpRight, BsGithub, BsYoutube, BsX, BsStarFill, BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/ui/tooltip"
 import Link from "next/link"
 import Image from "next/image"
-import WorkSliderBtns from "../../components/WorkSliderBtns"
 
 const allProjects = [
   {
     num: '01', category: "full stack", title: "Vita", featured: true,
     description: "Vita is a comprehensive health application that offers personalized recommendations for nutrition, exercise, and sleep. Using artificial intelligence, it suggests exercise routines and analyzes calories and nutrients from food photographs.",
-    stack: [{ name: 'Next' }, { name: 'Tailwind' }, { name: 'Gemini' }, { name: 'Open Ai' }, { name: 'Stripe' }, { name: 'WhatsApp Api' }, { name: 'Drizzle' }, { name: 'Cypress' }, { name: 'Vitest' }, { name: 'AWS' }, { name: 'Postgress' }, { name: 'Dotenv' }, { name: 'Typescript' }, { name: 'Github Actions' }],
+    stack: [{ name: 'Next' }, { name: 'Tailwind' }, { name: 'Gemini' }, { name: 'Open Ai' }, { name: 'Stripe' }, { name: 'WhatsApp Api' }, { name: 'Drizzle' }, { name: 'Cypress' }, { name: 'Vitest' }, { name: 'AWS' }, { name: 'Postgress' }, { name: 'Typescript' }, { name: 'Github Actions' }],
     image: '/assets/work/vitapro.png', live: 'https://d8vd0r6uuds8z.cloudfront.net/', github: '', youtube: 'https://www.youtube.com/watch?si=O_9DcWiUeaAuGUey&v=dXF64rgcdLI&feature=youtu.be'
   },
   {
     num: '02', category: "full stack", title: "Maes", featured: true,
-    description: "Spearheaded the creation of a user-centric website for the administration of the Student Academic Mentorship program at Tec de Monterrey, serving on average 3,500 monthly users",
+    description: "Spearheaded the creation of a user-centric website for the administration of the Student Academic Mentorship program at Tec de Monterrey, serving on average 3,500 monthly users.",
     stack: [{ name: 'Vue' }, { name: 'Css 3' }, { name: 'Javascript' }, { name: 'Firebase' }, { name: 'Html 5' }],
     image: '/assets/work/MAE.png', live: 'https://maes.mx/', github: '', youtube: ''
-  },
-  {
-    num: '03', category: "ios developer", title: "CivicMinds", featured: false,
-    description: "CivicMinds is an innovative application designed to optimize the process of law creation and development in Mexico using augmented reality and artificial intelligence technologies.",
-    stack: [{ name: 'SwiftUI' }, { name: 'UIKit' }, { name: 'VisionOS' }, { name: 'OpenAi Api' }],
-    image: '/assets/work/vision.jpg', live: '', github: '', youtube: 'https://drive.google.com/file/d/17sKpes78WoAsWUj6f8hjyPspKJi_RoCt/view?usp=sharing'
   },
   {
     num: '04', category: "ios developer", title: "AcrossMexico", featured: true,
@@ -41,6 +32,25 @@ const allProjects = [
     image: '/assets/work/TECuido.png', live: 'https://apps.apple.com/mx/app/tecuido-by-dilo-en-se%C3%B1as/id6476895704', github: '', youtube: 'https://www.youtube.com/watch?v=V1En6iZ9CLc'
   },
   {
+    num: '23', category: "full stack", title: "ConsoliBanco", featured: true,
+    description: "ConsoliBanco allows users to securely connect multiple bank accounts, view their total balance, review recent and categorized transactions, and transfer funds between accounts. Additionally, it generates financial analysis charts and offers tools to create personalized financial plans.",
+    stack: [{ name: 'Next.js' }, { name: 'TypeScript' }, { name: 'Appwrite' }, { name: 'Plaid' }, { name: 'Dwolla' }, { name: 'Gemini' }, { name: 'Sentry' }],
+    image: '/assets/work/ConsoliBanco.png', live: 'https://consoli-banco.vercel.app/sign-in', github: 'https://github.com/Bdelas777/ConsoliBanco', youtube: ''
+  },
+  {
+    num: '24', category: "full stack", title: "CancerMama", featured: true,
+    description: "CancerMama is a full-stack health application powered by AI that analyzes medical images using CNN models and provides personalized health recommendations. Built with React + TypeScript + Vite on the frontend and Flask + Python on the backend.",
+    stack: [{ name: 'Flask' }, { name: 'Python' }, { name: 'React' }, { name: 'TypeScript' }, { name: 'Vite' }],
+    image: '/assets/work/cancer.png', live: '', github: 'https://github.com/Bdelas777/CancerMama', youtube: ''
+  },
+  // ── More Projects ────────────────────────────────────────────
+  {
+    num: '03', category: "ios developer", title: "CivicMinds", featured: false,
+    description: "CivicMinds is an innovative application designed to optimize the process of law creation and development in Mexico using augmented reality and artificial intelligence technologies.",
+    stack: [{ name: 'SwiftUI' }, { name: 'UIKit' }, { name: 'VisionOS' }, { name: 'OpenAi Api' }],
+    image: '/assets/work/vision.jpg', live: '', github: '', youtube: 'https://drive.google.com/file/d/17sKpes78WoAsWUj6f8hjyPspKJi_RoCt/view?usp=sharing'
+  },
+  {
     num: '06', category: "full stack", title: "Depas", featured: false,
     description: "This application facilitates the sale or rental of rooms, apartments, or houses.",
     stack: [{ name: 'Express' }, { name: 'MongoDB' }, { name: 'React' }, { name: 'MUI' }, { name: 'MapBox' }, { name: 'Google Cloud' }, { name: 'Javascript' }],
@@ -53,7 +63,7 @@ const allProjects = [
     image: '/assets/work/test.png', live: '', github: 'https://github.com/Kingsman-Construccion-de-software', youtube: 'https://drive.google.com/drive/folders/1lLyFCotX8I4_4QblLuyB3n5E-WPkR-cJ?usp=sharing'
   },
   {
-    num: '08', category: "full stack", title: "Sistema de inscripciones para Proyecto 99", featured: false,
+    num: '08', category: "full stack", title: "Sistema Proyecto 99", featured: false,
     description: "Led backend development for the implementation of a comprehensive system for class registrations. Oversaw CRUD operations and contributed to UI design.",
     stack: [{ name: 'MongoDB' }, { name: 'Express' }, { name: 'Firebase' }, { name: 'Material UI' }, { name: 'React' }, { name: 'Azure' }],
     image: '/assets/work/P99.png', live: 'https://p99test.fly.dev/', github: 'https://github.com/TeraBlitz/P99_ProyectoInvierno2022?tab=readme-ov-file', youtube: ''
@@ -96,7 +106,7 @@ const allProjects = [
   },
   {
     num: '15', category: "full stack", title: "Food4All", featured: false,
-    description: "A food expiry tracking app is designed to store and record data on food items that are approaching their expiration dates, helping to manage inventory and reduce waste.",
+    description: "A food expiry tracking app to store and record data on food items approaching their expiration dates, helping manage inventory and reduce waste.",
     stack: [{ name: 'Django' }, { name: 'SwiftUI' }, { name: 'SQlite' }],
     image: '/assets/work/Food.jpg', live: '', github: '', youtube: ''
   },
@@ -143,26 +153,14 @@ const allProjects = [
     image: '/assets/work/isr.png', live: '', github: 'https://github.com/Bdelas777/Salario2020/tree/main', youtube: ''
   },
   {
-    num: '23', category: "full stack", title: "ConsoliBanco", featured: true,
-    description: "ConsoliBanco allows users to securely connect multiple bank accounts, view their total balance, review recent and categorized transactions, and transfer funds between accounts. Additionally, it generates financial analysis charts and offers tools to create personalized financial plans.",
-    stack: [{ name: 'Next.js' }, { name: 'TypeScript' }, { name: 'Appwrite' }, { name: 'Plaid' }, { name: 'Dwolla' }, { name: 'Gemini' }, { name: 'Sentry' }],
-    image: '/assets/work/ConsoliBanco.png', live: 'https://consoli-banco.vercel.app/sign-in', github: 'https://github.com/Bdelas777/ConsoliBanco', youtube: ''
-  },
-  {
-    num: '24', category: "full stack", title: "CancerMama", featured: true,
-    description: "CancerMama is a full-stack health application powered by AI that analyzes medical images using CNN models and provides personalized health recommendations. Built with React + TypeScript + Vite on the frontend and Flask + Python on the backend.",
-    stack: [{ name: 'Flask' }, { name: 'Python' }, { name: 'React' }, { name: 'TypeScript' }, { name: 'Vite' }],
-    image: '/assets/work/cancer.png', live: '', github: 'https://github.com/Bdelas777/CancerMama', youtube: ''
-  },
-  {
     num: '25', category: "investigation", title: "Chat Whats", featured: false,
     description: "The study of genomes using R involves leveraging statistical and computational tools to analyze large-scale genomic data.",
-    stack: [{ name: 'Python' },{ name: 'Flask' },{ name: 'Azure' }],
-    image: '/assets/work/Whats.png', live: '', github: 'https://github.com/Bdelas777/WhatsApp', youtube: ''
+    stack: [{ name: 'Python' }, { name: 'Flask' }, { name: 'Azure' }],
+    image: '/assets/work/whats.png', live: '', github: 'https://github.com/Bdelas777/WhatsApp', youtube: ''
   },
   {
     num: '26', category: "investigation", title: "Compilador", featured: false,
-    description: "Compilador.",
+    description: "Research project focused on building a compiler using Python. The project includes lexical and syntactic analysis to process source code and transform it into a structured representation that can be interpreted or executed by a machine.",
     stack: [{ name: 'Python' }],
     image: '/assets/work/Compi.png', live: '', github: 'https://github.com/Bdelas777/CompiladoresElda', youtube: ''
   },
@@ -171,154 +169,148 @@ const allProjects = [
 const featuredProjects = allProjects.filter(p => p.featured)
 const otherProjects = allProjects.filter(p => !p.featured)
 
-const categoryLabels = {
-  "full stack": "Full Stack",
-  "ios developer": "iOS",
-  "frontend": "Frontend",
-  "console": "Console",
-  "videogame": "Videogame",
-  "investigation": "Research",
-}
-
-const categoryIcons = {
-  "full stack": "⚡",
-  "ios developer": "📱",
-  "frontend": "🎨",
-  "console": "⌨️",
-  "videogame": "🎮",
-  "investigation": "🔬",
+const categoryMeta = {
+  "full stack":    { label: "Full Stack",   icon: "⚡" },
+  "ios developer": { label: "iOS",          icon: "📱" },
+  "frontend":      { label: "Frontend",     icon: "🎨" },
+  "console":       { label: "Console",      icon: "⌨️"  },
+  "videogame":     { label: "Videogame",    icon: "🎮" },
+  "investigation": { label: "Research",     icon: "🔬" },
 }
 
 const categories = [...new Set(otherProjects.map(p => p.category))]
 
-// ── Project Links ────────────────────────────────────────────────────────────
-const ProjectLinks = ({ project }) => (
+// ── Link buttons ─────────────────────────────────────────────────────────────
+const LinkBtn = ({ href, icon: Icon, label, variant = "default" }) => {
+  const styles = {
+    default: "bg-white/8 border-white/15 text-white/70 hover:bg-white/15 hover:text-white hover:border-white/30",
+    accent:  "bg-accent/15 border-accent/40 text-accent hover:bg-accent hover:text-primary hover:border-accent",
+    red:     "bg-red-500/10 border-red-500/20 text-red-400 hover:bg-red-500/25 hover:border-red-500/50 hover:text-red-300",
+  }
+  return (
+    <Link href={href} target="_blank" passHref>
+      <TooltipProvider delayDuration={80}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-200 ${styles[variant]}`}>
+              <Icon className="text-[15px]" />
+            </button>
+          </TooltipTrigger>
+          <TooltipContent><p>{label}</p></TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </Link>
+  )
+}
+
+const ProjectLinks = ({ project, size = "md" }) => (
   <div className="flex items-center gap-2">
-    {project.live && (
-      <Link href={project.live} target="_blank" passHref>
-        <TooltipProvider delayDuration={100}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button className="w-9 h-9 rounded-lg bg-accent/15 border border-accent/30 flex justify-center items-center hover:bg-accent hover:border-accent transition-all duration-200 group">
-                <BsArrowUpRight className="text-accent text-sm group-hover:text-primary" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent><p>Live project</p></TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </Link>
-    )}
-    {project.github && (
-      <Link href={project.github} target="_blank" passHref>
-        <TooltipProvider delayDuration={100}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex justify-center items-center hover:bg-white/15 hover:border-white/30 transition-all duration-200 group">
-                <BsGithub className="text-white/60 text-sm group-hover:text-white" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent><p>GitHub</p></TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </Link>
-    )}
-    {project.youtube && (
-      <Link href={project.youtube} target="_blank" passHref>
-        <TooltipProvider delayDuration={100}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button className="w-9 h-9 rounded-lg bg-red-500/10 border border-red-500/20 flex justify-center items-center hover:bg-red-500/30 hover:border-red-500/50 transition-all duration-200 group">
-                <BsYoutube className="text-red-400 text-sm group-hover:text-red-300" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent><p>Demo Video</p></TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </Link>
-    )}
+    {project.live    && <LinkBtn href={project.live}    icon={BsArrowUpRight} label="Live project" variant="accent" />}
+    {project.github  && <LinkBtn href={project.github}  icon={BsGithub}       label="GitHub"       variant="default" />}
+    {project.youtube && <LinkBtn href={project.youtube} icon={BsYoutube}      label="Demo video"   variant="red" />}
   </div>
 )
 
-// ── Featured Slide Info ──────────────────────────────────────────────────────
-const FeaturedInfo = ({ project }) => (
-  <motion.div
-    key={project.num}
-    initial={{ opacity: 0, x: -20 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.4, ease: "easeOut" }}
-    className="flex flex-col gap-5 h-full justify-between"
-  >
-    <div className="flex flex-col gap-4">
-      {/* Number + badge */}
-      <div className="flex items-center gap-4">
-        <span className="text-[72px] leading-none font-black text-transparent"
-          style={{ WebkitTextStroke: '1px rgba(255,255,255,0.12)' }}>
-          {project.num}
-        </span>
-        <div className="flex flex-col gap-1.5">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-accent/20 border border-accent/40 text-accent text-[10px] font-bold uppercase tracking-[0.15em]">
-            <BsStarFill className="text-[8px]" /> Featured
-          </span>
-          <span className="text-xs text-white/35 font-medium uppercase tracking-widest">
-            {categoryLabels[project.category] || project.category}
-          </span>
-        </div>
-      </div>
+// ── Detail Modal ──────────────────────────────────────────────────────────────
+const ProjectModal = ({ project, onClose }) => {
+  if (!project) return null
+  const cat = categoryMeta[project.category] || { label: project.category, icon: "📁" }
+  return (
+    <AnimatePresence>
+      <motion.div
+        key="backdrop"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-lg flex items-center justify-center p-4"
+        onClick={onClose}
+      >
+        <motion.div
+          key="modal"
+          initial={{ opacity: 0, scale: 0.88, y: 40 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.92, y: 20 }}
+          transition={{ type: "spring", stiffness: 300, damping: 28 }}
+          className="relative w-full max-w-3xl rounded-3xl overflow-hidden border border-white/12 shadow-[0_32px_80px_rgba(0,0,0,0.7)] bg-[#0f0f13]"
+          onClick={e => e.stopPropagation()}
+        >
+          {/* Close */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-20 w-9 h-9 rounded-xl bg-black/60 backdrop-blur-sm border border-white/12 flex items-center justify-center text-white/60 hover:text-white hover:bg-black/80 transition-all duration-200"
+          >
+            <BsX className="text-xl" />
+          </button>
 
-      {/* Title */}
-      <div>
-        <h2 className="text-4xl xl:text-5xl font-black text-white leading-[1.05] tracking-tight">
-          {project.title}
-        </h2>
-      </div>
+          {/* Hero image */}
+          <div className="relative h-[260px] md:h-[320px] w-full overflow-hidden">
+            <Image src={project.image} layout="fill" className="object-cover" alt={project.title} />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f13] via-[#0f0f13]/30 to-transparent" />
 
-      {/* Description */}
-      <p className="text-white/55 text-sm leading-relaxed max-w-md">
-        {project.description}
-      </p>
+            {/* Badges on image */}
+            <div className="absolute top-4 left-4 flex items-center gap-2">
+              {project.featured && (
+                <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent text-primary text-[10px] font-black uppercase tracking-[0.12em] shadow-lg shadow-accent/30">
+                  <BsStarFill className="text-[8px]" /> Featured
+                </span>
+              )}
+              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/55 backdrop-blur-sm border border-white/12 text-white/70 text-[10px] font-bold uppercase tracking-[0.1em]">
+                {cat.icon} {cat.label}
+              </span>
+            </div>
 
-      {/* Stack */}
-      <div className="flex flex-wrap gap-1.5">
-        {project.stack.map((item, i) => (
-          <span key={i}
-            className="text-[11px] font-semibold text-accent/80 bg-accent/8 border border-accent/15 px-2.5 py-1 rounded-md tracking-wide">
-            {item.name}
-          </span>
-        ))}
-      </div>
-    </div>
+            {/* Num watermark */}
+            <div className="absolute bottom-4 right-6 text-[80px] font-black leading-none text-white/[0.07] select-none">
+              {project.num}
+            </div>
+          </div>
 
-    {/* Links */}
-    <div className="flex items-center gap-4 pt-2">
-      <ProjectLinks project={project} />
-      {!project.live && !project.github && !project.youtube && (
-        <span className="text-xs text-white/25 italic">No public links</span>
-      )}
-    </div>
-  </motion.div>
-)
+          {/* Content */}
+          <div className="p-7 pt-5">
+            <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-2">{project.title}</h2>
+            <p className="text-white/55 text-sm leading-relaxed mb-6">{project.description}</p>
 
-// ── Main Component ───────────────────────────────────────────────────────────
+            {/* Stack */}
+            <div className="mb-6">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/25 mb-2.5">Tech Stack</p>
+              <div className="flex flex-wrap gap-2">
+                {project.stack.map((item, i) => (
+                  <span key={i} className="text-xs font-semibold text-accent/85 bg-accent/10 border border-accent/20 px-3 py-1 rounded-lg">
+                    {item.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Links */}
+            <div className="flex items-center justify-between pt-4 border-t border-white/8">
+              <ProjectLinks project={project} />
+              {!project.live && !project.github && !project.youtube && (
+                <span className="text-xs text-white/25 italic">No public links available</span>
+              )}
+              <button onClick={onClose} className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200 font-medium">
+                Close esc
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
+// ── Main ──────────────────────────────────────────────────────────────────────
 const Work = () => {
-  const [activeFeaturedIndex, setActiveFeaturedIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
   const [activeCategory, setActiveCategory] = useState(categories[0])
-  const [isImageOpen, setIsImageOpen] = useState(false)
-  const [selectedImage, setSelectedImage] = useState("")
-  const [expandedCard, setExpandedCard] = useState(null)
+  const [modalProject, setModalProject] = useState(null)
 
-  const featuredProject = featuredProjects[activeFeaturedIndex]
+  const prev = () => setActiveIndex(i => (i - 1 + featuredProjects.length) % featuredProjects.length)
+  const next = () => setActiveIndex(i => (i + 1) % featuredProjects.length)
 
-  const openImageModal = (image, e) => {
-    e?.stopPropagation()
-    setSelectedImage(image)
-    setIsImageOpen(true)
-  }
-
-  const closeImageModal = () => {
-    setIsImageOpen(false)
-    setSelectedImage("")
-  }
-
+  const hero = featuredProjects[activeIndex]
+  const thumbs = featuredProjects.filter((_, i) => i !== activeIndex)
   const categoryProjects = otherProjects.filter(p => p.category === activeCategory)
 
   return (
@@ -329,139 +321,214 @@ const Work = () => {
     >
       <div className="container mx-auto">
 
-        {/* ══ FEATURED SECTION ══════════════════════════════════════════ */}
-        <div className="mb-20">
+        {/* ══════════════════════════════════════════════════
+            FEATURED — section label
+        ══════════════════════════════════════════════════ */}
+        <div className="flex items-center gap-3 mb-8">
+          <span className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-accent/15 border border-accent/35 text-accent text-[11px] font-black uppercase tracking-[0.18em]">
+            <BsStarFill className="text-[9px]" /> Featured Projects
+          </span>
+          <div className="flex-1 h-px bg-gradient-to-r from-accent/20 to-transparent" />
+          <span className="text-white/20 text-xs font-mono">{featuredProjects.length} selected</span>
+        </div>
 
-          {/* Section label */}
-          <div className="flex items-center gap-4 mb-10">
-            <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-md bg-accent/20 border border-accent/40 flex items-center justify-center">
-                <BsStarFill className="text-accent text-[11px]" />
-              </div>
-              <h2 className="text-lg font-bold text-white tracking-[0.08em] uppercase">Featured Projects</h2>
-            </div>
-            <div className="flex-1 h-px bg-gradient-to-r from-accent/30 to-transparent" />
-            <span className="text-xs text-white/25 font-mono">{featuredProjects.length} projects</span>
-          </div>
+        {/* ══════════════════════════════════════════════════
+            HERO FEATURED CARD
+        ══════════════════════════════════════════════════ */}
+        <div className="relative mb-5">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={hero.num}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+              className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer group"
+              style={{ height: 'clamp(320px, 50vw, 520px)' }}
+              onClick={() => setModalProject(hero)}
+            >
+              {/* BG image */}
+              <Image
+                src={hero.image}
+                layout="fill"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                alt={hero.title}
+                priority
+              />
 
-          {/* Featured layout */}
-          <div className="grid xl:grid-cols-2 gap-10 xl:gap-16 items-start">
+              {/* Gradient overlays */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-black/10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-            {/* LEFT: Info panel */}
-            <div className="order-2 xl:order-1 xl:pt-4">
-              <FeaturedInfo project={featuredProject} />
-            </div>
-
-            {/* RIGHT: Slider */}
-            <div className="order-1 xl:order-2">
-              <div className="relative">
-                {/* Decorative glow behind slider */}
-                <div className="absolute -inset-4 rounded-2xl bg-accent/5 blur-2xl pointer-events-none" />
-
-                <Swiper
-                  spaceBetween={24}
-                  slidesPerView={1}
-                  className="rounded-2xl overflow-hidden"
-                  onSlideChange={(swiper) => setActiveFeaturedIndex(swiper.activeIndex)}
-                  style={{ position: 'relative' }}
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+                <motion.div
+                  key={`info-${hero.num}`}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
-                  {featuredProjects.map((project, index) => (
-                    <SwiperSlide key={index}>
-                      <div
-                        className="relative h-[380px] xl:h-[460px] cursor-zoom-in overflow-hidden rounded-2xl"
-                        onClick={(e) => openImageModal(project.image, e)}
-                      >
-                        {/* Featured pill */}
-                        <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent text-primary text-[10px] font-black uppercase tracking-[0.12em] shadow-lg shadow-accent/25">
-                          <BsStarFill className="text-[8px]" /> Featured
-                        </div>
+                  {/* Featured + category badges */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent text-primary text-[10px] font-black uppercase tracking-[0.14em] shadow-lg shadow-accent/30">
+                      <BsStarFill className="text-[8px]" /> Featured
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/65 text-[10px] font-bold uppercase tracking-[0.12em]">
+                      {(categoryMeta[hero.category] || {}).icon} {(categoryMeta[hero.category] || {}).label || hero.category}
+                    </span>
+                  </div>
 
-                        {/* Project number overlay */}
-                        <div className="absolute bottom-4 right-5 z-20 font-black text-[56px] leading-none text-white/10 select-none">
-                          {project.num}
-                        </div>
+                  {/* Title */}
+                  <h2 className="text-4xl md:text-6xl font-black text-white leading-none tracking-tight mb-3">
+                    {hero.title}
+                  </h2>
 
-                        {/* Overlay gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10" />
+                  {/* Description */}
+                  <p className="text-white/60 text-sm md:text-base max-w-xl leading-relaxed mb-5 hidden md:block">
+                    {hero.description}
+                  </p>
 
-                        {/* Image */}
-                        <Image
-                          src={project.image}
-                          layout="fill"
-                          className="object-cover transition-transform duration-700 hover:scale-105"
-                          alt={project.title}
-                        />
+                  {/* Stack pills */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {hero.stack.slice(0, 7).map((s, i) => (
+                      <span key={i} className="text-[11px] font-semibold text-accent/80 bg-black/50 backdrop-blur-sm border border-accent/25 px-2.5 py-0.5 rounded-lg">
+                        {s.name}
+                      </span>
+                    ))}
+                    {hero.stack.length > 7 && (
+                      <span className="text-[11px] text-white/30 px-2 py-0.5">+{hero.stack.length - 7} more</span>
+                    )}
+                  </div>
 
-                        {/* Bottom info strip */}
-                        <div className="absolute bottom-0 left-0 right-0 z-20 p-5">
-                          <p className="text-white font-bold text-lg leading-tight">{project.title}</p>
-                          <p className="text-white/50 text-xs mt-0.5 capitalize">{project.category}</p>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-
-                  <WorkSliderBtns
-                    containerStyles="flex gap-2 absolute right-4 bottom-4 z-30"
-                    btnStyles="w-9 h-9 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-white text-sm flex justify-center items-center hover:bg-accent hover:text-primary hover:border-accent transition-all duration-200"
-                  />
-                </Swiper>
-
-                {/* Dot indicators */}
-                <div className="flex justify-center gap-2 mt-4">
-                  {featuredProjects.map((_, i) => (
+                  {/* Links + CTA */}
+                  <div className="flex items-center gap-4">
+                    <ProjectLinks project={hero} />
                     <button
-                      key={i}
-                      onClick={() => setActiveFeaturedIndex(i)}
-                      className={`transition-all duration-300 rounded-full ${
-                        activeFeaturedIndex === i
-                          ? 'w-6 h-2 bg-accent'
-                          : 'w-2 h-2 bg-white/20 hover:bg-white/40'
-                      }`}
-                    />
-                  ))}
-                </div>
+                      onClick={e => { e.stopPropagation(); setModalProject(hero) }}
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/8 backdrop-blur-sm border border-white/15 text-white/70 text-xs font-semibold hover:bg-white/15 hover:text-white hover:border-white/30 transition-all duration-200"
+                    >
+                      View details →
+                    </button>
+                  </div>
+                </motion.div>
               </div>
-            </div>
+
+              {/* Nav arrows */}
+              <button
+                onClick={e => { e.stopPropagation(); prev() }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-black/50 backdrop-blur-sm border border-white/12 flex items-center justify-center text-white/60 hover:text-white hover:bg-black/75 hover:border-white/25 transition-all duration-200 z-10"
+              >
+                <BsChevronLeft />
+              </button>
+              <button
+                onClick={e => { e.stopPropagation(); next() }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-black/50 backdrop-blur-sm border border-white/12 flex items-center justify-center text-white/60 hover:text-white hover:bg-black/75 hover:border-white/25 transition-all duration-200 z-10"
+              >
+                <BsChevronRight />
+              </button>
+
+              {/* Large num watermark */}
+              <div className="absolute top-6 right-8 text-[120px] font-black leading-none text-white/[0.05] select-none pointer-events-none">
+                {hero.num}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Dot indicators */}
+          <div className="flex justify-center gap-2 mt-4">
+            {featuredProjects.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`rounded-full transition-all duration-300 ${i === activeIndex ? 'w-7 h-2 bg-accent' : 'w-2 h-2 bg-white/18 hover:bg-white/35'}`}
+              />
+            ))}
           </div>
         </div>
 
-        {/* ══ SECTION DIVIDER ════════════════════════════════════════════ */}
-        <div className="flex items-center gap-4 mb-12">
+        {/* ══════════════════════════════════════════════════
+            FEATURED — thumbnail strip (5 others)
+        ══════════════════════════════════════════════════ */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-20">
+          {featuredProjects.map((p, i) => {
+            const isActive = i === activeIndex
+            const cat = categoryMeta[p.category] || { label: p.category, icon: "📁" }
+            return (
+              <motion.button
+                key={p.num}
+                onClick={() => setActiveIndex(i)}
+                whileHover={{ y: -3, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`
+                  relative rounded-2xl overflow-hidden border transition-all duration-300 text-left group
+                  ${isActive
+                    ? 'border-accent shadow-[0_0_20px_rgba(var(--accent-rgb,200,200,0),0.25)] ring-1 ring-accent/40'
+                    : 'border-white/8 hover:border-white/25'
+                  }
+                `}
+                style={{ height: '130px' }}
+              >
+                <Image src={p.image} layout="fill" className="object-cover transition-transform duration-500 group-hover:scale-105" alt={p.title} />
+                <div className={`absolute inset-0 transition-opacity duration-300 ${isActive ? 'bg-gradient-to-t from-black/75 via-black/20 to-accent/10' : 'bg-gradient-to-t from-black/75 via-black/15 to-transparent'}`} />
+
+                {/* Active glow top border */}
+                {isActive && <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent" />}
+
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <p className={`text-[11px] font-bold leading-tight transition-colors ${isActive ? 'text-white' : 'text-white/70'}`}>
+                    {p.title}
+                  </p>
+                  <p className="text-[9px] text-white/35 mt-0.5 font-medium">{cat.icon} {cat.label}</p>
+                </div>
+
+                {isActive && (
+                  <div className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
+                    <BsStarFill className="text-primary text-[7px]" />
+                  </div>
+                )}
+              </motion.button>
+            )
+          })}
+        </div>
+
+        {/* ══════════════════════════════════════════════════
+            MORE PROJECTS — divider
+        ══════════════════════════════════════════════════ */}
+        <div className="flex items-center gap-4 mb-10">
           <div className="flex-1 h-px bg-white/8" />
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/3">
-            <span className="text-white/30 text-xs uppercase tracking-[0.25em] font-semibold">All Projects</span>
+          <div className="px-5 py-2 rounded-full border border-white/10 bg-white/3">
+            <span className="text-white/35 text-xs font-bold uppercase tracking-[0.22em]">More Projects</span>
           </div>
           <div className="flex-1 h-px bg-white/8" />
         </div>
 
-        {/* ══ CATEGORY TABS ══════════════════════════════════════════════ */}
-        <div className="mb-8 overflow-x-auto pb-2 scrollbar-none">
+        {/* ══════════════════════════════════════════════════
+            CATEGORY TABS
+        ══════════════════════════════════════════════════ */}
+        <div className="mb-8 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
           <div className="flex gap-2 min-w-max">
-            {categories.map((cat) => {
+            {categories.map(cat => {
+              const meta = categoryMeta[cat] || { label: cat, icon: "📁" }
               const count = otherProjects.filter(p => p.category === cat).length
               const isActive = activeCategory === cat
               return (
                 <motion.button
                   key={cat}
-                  onClick={() => { setActiveCategory(cat); setExpandedCard(null) }}
+                  onClick={() => setActiveCategory(cat)}
                   whileHover={{ y: -2 }}
                   whileTap={{ y: 0, scale: 0.97 }}
                   className={`
-                    relative flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-semibold
-                    transition-all duration-300 border whitespace-nowrap
+                    flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border
+                    transition-all duration-250 whitespace-nowrap
                     ${isActive
-                      ? 'bg-accent text-primary border-accent shadow-[0_4px_20px_rgba(var(--accent-rgb,0,0,0),0.35)]'
-                      : 'bg-white/4 text-white/50 border-white/8 hover:bg-white/8 hover:text-white/80 hover:border-white/20'
+                      ? 'bg-accent text-primary border-accent shadow-[0_4px_18px_rgba(var(--accent-rgb,200,200,0),0.3)]'
+                      : 'bg-white/4 text-white/50 border-white/8 hover:bg-white/7 hover:text-white/75 hover:border-white/18'
                     }
                   `}
                 >
-                  <span className="text-base">{categoryIcons[cat]}</span>
-                  <span>{categoryLabels[cat] || cat}</span>
-                  <span className={`
-                    text-[11px] font-bold px-1.5 py-0.5 rounded-md min-w-[20px] text-center
-                    ${isActive ? 'bg-primary/25 text-primary' : 'bg-white/8 text-white/35'}
-                  `}>
+                  <span>{meta.icon}</span>
+                  <span>{meta.label}</span>
+                  <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded-md ${isActive ? 'bg-primary/25 text-primary' : 'bg-white/8 text-white/35'}`}>
                     {count}
                   </span>
                 </motion.button>
@@ -470,123 +537,75 @@ const Work = () => {
           </div>
         </div>
 
-        {/* ══ PROJECT GRID ═══════════════════════════════════════════════ */}
+        {/* ══════════════════════════════════════════════════
+            PROJECT GRID
+        ══════════════════════════════════════════════════ */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-20"
+            transition={{ duration: 0.28 }}
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-16"
           >
             {categoryProjects.map((project, index) => {
-              const isExpanded = expandedCard === project.num
+              const cat = categoryMeta[project.category] || { label: project.category, icon: "📁" }
               return (
                 <motion.div
                   key={project.num}
-                  initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                  initial={{ opacity: 0, y: 18, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.06, ease: "easeOut" }}
-                  className={`
-                    group relative flex flex-col rounded-2xl overflow-hidden
-                    border transition-all duration-300 cursor-pointer
-                    ${isExpanded
-                      ? 'bg-white/8 border-accent/50 shadow-[0_0_30px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.06)]'
-                      : 'bg-white/4 border-white/8 hover:bg-white/6 hover:border-white/18 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]'
-                    }
-                  `}
-                  onClick={() => setExpandedCard(isExpanded ? null : project.num)}
+                  transition={{ duration: 0.28, delay: index * 0.055 }}
+                  className="group relative flex flex-col rounded-2xl overflow-hidden border border-white/8 bg-white/[0.03] hover:bg-white/[0.055] hover:border-white/18 hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition-all duration-300 cursor-pointer"
+                  onClick={() => setModalProject(project)}
                 >
                   {/* Image */}
-                  <div
-                    className="relative h-[190px] overflow-hidden flex-shrink-0"
-                    onClick={(e) => openImageModal(project.image, e)}
-                  >
+                  <div className="relative h-[185px] overflow-hidden flex-shrink-0">
                     <Image
                       src={project.image}
                       layout="fill"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
                       alt={project.title}
                     />
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent" />
 
                     {/* Category chip */}
                     <div className="absolute top-3 left-3 z-10">
-                      <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.1em] text-white/70 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/10">
-                        {categoryIcons[project.category]}
-                        {categoryLabels[project.category] || project.category}
+                      <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-white/65 bg-black/50 backdrop-blur-sm border border-white/10 px-2 py-1 rounded-lg">
+                        {cat.icon} {cat.label}
                       </span>
                     </div>
 
-                    {/* Zoom hint */}
+                    {/* Hover reveal CTA */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                      <div className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                        <BsArrowUpRight className="text-white text-sm rotate-0" />
+                      <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-black/65 backdrop-blur-sm border border-white/20 text-white text-xs font-semibold">
+                        View details →
                       </div>
                     </div>
 
-                    {/* Number watermark */}
-                    <div className="absolute bottom-2 right-3 font-black text-4xl leading-none text-white/10 select-none z-10">
+                    {/* Num watermark */}
+                    <div className="absolute bottom-2 right-3 font-black text-4xl text-white/[0.08] select-none z-10 leading-none">
                       {project.num}
                     </div>
                   </div>
 
-                  {/* Card body */}
-                  <div className="flex flex-col flex-1 p-4">
-                    {/* Title row */}
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-base font-bold text-white leading-tight">{project.title}</h3>
-                      <span className={`text-sm mt-0.5 flex-shrink-0 transition-transform duration-300 text-white/30 ${isExpanded ? 'rotate-180' : ''}`}>
-                        ▾
-                      </span>
-                    </div>
+                  {/* Body */}
+                  <div className="p-4 flex flex-col flex-1">
+                    <h3 className="text-base font-bold text-white leading-tight mb-2">{project.title}</h3>
+                    <p className="text-white/40 text-xs leading-relaxed mb-3 line-clamp-2">{project.description}</p>
 
-                    {/* Collapsed: show first 4 tags */}
-                    {!isExpanded && (
-                      <div className="flex flex-wrap gap-1.5 mt-1">
-                        {project.stack.slice(0, 4).map((item, i) => (
-                          <span key={i}
-                            className="text-[11px] text-accent/65 bg-accent/6 border border-accent/12 px-2 py-0.5 rounded-md font-medium">
-                            {item.name}
-                          </span>
-                        ))}
-                        {project.stack.length > 4 && (
-                          <span className="text-[11px] text-white/25 px-2 py-0.5">
-                            +{project.stack.length - 4}
-                          </span>
-                        )}
-                      </div>
-                    )}
-
-                    {/* Expanded: full info */}
-                    <AnimatePresence>
-                      {isExpanded && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.28, ease: "easeOut" }}
-                          className="overflow-hidden"
-                        >
-                          <p className="text-white/50 text-sm leading-relaxed mb-3 mt-1">
-                            {project.description}
-                          </p>
-                          <div className="flex flex-wrap gap-1.5 mb-4">
-                            {project.stack.map((item, i) => (
-                              <span key={i}
-                                className="text-[11px] text-accent/80 bg-accent/10 border border-accent/20 px-2.5 py-0.5 rounded-md font-semibold">
-                                {item.name}
-                              </span>
-                            ))}
-                          </div>
-                          {/* Divider */}
-                          <div className="h-px bg-white/8 mb-3" />
-                          <ProjectLinks project={project} />
-                        </motion.div>
+                    {/* Stack preview */}
+                    <div className="flex flex-wrap gap-1.5 mt-auto">
+                      {project.stack.slice(0, 4).map((item, i) => (
+                        <span key={i} className="text-[10px] font-semibold text-accent/65 bg-accent/6 border border-accent/12 px-2 py-0.5 rounded-md">
+                          {item.name}
+                        </span>
+                      ))}
+                      {project.stack.length > 4 && (
+                        <span className="text-[10px] text-white/25 px-1.5 py-0.5">+{project.stack.length - 4}</span>
                       )}
-                    </AnimatePresence>
+                    </div>
                   </div>
                 </motion.div>
               )
@@ -595,43 +614,12 @@ const Work = () => {
         </AnimatePresence>
       </div>
 
-      {/* ══ IMAGE MODAL ══════════════════════════════════════════════════ */}
-      <AnimatePresence>
-        {isImageOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/85 backdrop-blur-md flex justify-center items-center z-50 p-6"
-            onClick={closeImageModal}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl max-w-4xl w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close button */}
-              <button
-                className="absolute top-3 right-3 z-10 w-9 h-9 rounded-xl bg-black/70 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/90 hover:border-white/30 transition-all duration-200"
-                onClick={closeImageModal}
-              >
-                <BsX className="text-xl" />
-              </button>
-              <Image
-                src={selectedImage}
-                width={900}
-                height={600}
-                className="object-contain w-full"
-                alt="Preview"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* ══════════════════════════════════════════════════
+          DETAIL MODAL
+      ══════════════════════════════════════════════════ */}
+      {modalProject && (
+        <ProjectModal project={modalProject} onClose={() => setModalProject(null)} />
+      )}
     </motion.section>
   )
 }
