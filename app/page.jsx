@@ -19,11 +19,11 @@ export default function Home() {
               <span className="text-accent"> Bernardo de la Sierra</span>
             </h1>
             <p className="max-w-[650px] mb-9 text-white/88 text-justify">
-            Computer Science graduate from Tecnológico de Monterrey with professional experience 
+            I am a Computer Science graduate from Tecnológico de Monterrey with professional experience 
               in full stack development, robotic process automation, and iOS engineering. I have delivered 
               enterprise solutions at C3.AI, KPMG, Cydsa, and Wizeline, and won the Swift Student Challenge 
               in 2024 & 2025. Currently expanding into Artificial Intelligence and eager to build 
-              smarter, data-driven products.
+              smarter, data-driven products. 
             </p>
             {/* socials */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
