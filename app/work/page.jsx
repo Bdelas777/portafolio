@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import 'swiper/css'
-import { BsArrowUpRight, BsGithub, BsYoutube, BsX, BsStar, BsStarFill } from "react-icons/bs"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/ui/tooltip";
+import { BsArrowUpRight, BsGithub, BsYoutube, BsX, BsStarFill } from "react-icons/bs"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/ui/tooltip"
 import Link from "next/link"
 import Image from "next/image"
 import WorkSliderBtns from "../../components/WorkSliderBtns"
@@ -161,24 +161,35 @@ const otherProjects = allProjects.filter(p => !p.featured)
 
 const categoryLabels = {
   "full stack": "Full Stack",
-  "ios developer": "iOS Developer",
+  "ios developer": "iOS",
   "frontend": "Frontend",
   "console": "Console",
   "videogame": "Videogame",
-  "investigation": "Investigation",
+  "investigation": "Research",
+}
+
+const categoryIcons = {
+  "full stack": "⚡",
+  "ios developer": "📱",
+  "frontend": "🎨",
+  "console": "⌨️",
+  "videogame": "🎮",
+  "investigation": "🔬",
 }
 
 const categories = [...new Set(otherProjects.map(p => p.category))]
 
-// Project Links Row
+// ── Project Links ────────────────────────────────────────────────────────────
 const ProjectLinks = ({ project }) => (
-  <div className="flex items-center gap-3">
+  <div className="flex items-center gap-2">
     {project.live && (
-      <Link href={project.live} passHref>
+      <Link href={project.live} target="_blank" passHref>
         <TooltipProvider delayDuration={100}>
           <Tooltip>
-            <TooltipTrigger className="w-[44px] h-[44px] rounded-full bg-white/5 flex justify-center items-center group">
-              <BsArrowUpRight className="text-white text-xl group-hover:text-accent" />
+            <TooltipTrigger asChild>
+              <button className="w-9 h-9 rounded-lg bg-accent/15 border border-accent/30 flex justify-center items-center hover:bg-accent hover:border-accent transition-all duration-200 group">
+                <BsArrowUpRight className="text-accent text-sm group-hover:text-primary" />
+              </button>
             </TooltipTrigger>
             <TooltipContent><p>Live project</p></TooltipContent>
           </Tooltip>
@@ -186,25 +197,29 @@ const ProjectLinks = ({ project }) => (
       </Link>
     )}
     {project.github && (
-      <Link href={project.github} passHref>
+      <Link href={project.github} target="_blank" passHref>
         <TooltipProvider delayDuration={100}>
           <Tooltip>
-            <TooltipTrigger className="w-[44px] h-[44px] rounded-full bg-white/5 flex justify-center items-center group">
-              <BsGithub className="text-white text-xl group-hover:text-accent" />
+            <TooltipTrigger asChild>
+              <button className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex justify-center items-center hover:bg-white/15 hover:border-white/30 transition-all duration-200 group">
+                <BsGithub className="text-white/60 text-sm group-hover:text-white" />
+              </button>
             </TooltipTrigger>
-            <TooltipContent><p>Github</p></TooltipContent>
+            <TooltipContent><p>GitHub</p></TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </Link>
     )}
     {project.youtube && (
-      <Link href={project.youtube} passHref>
+      <Link href={project.youtube} target="_blank" passHref>
         <TooltipProvider delayDuration={100}>
           <Tooltip>
-            <TooltipTrigger className="w-[44px] h-[44px] rounded-full bg-white/5 flex justify-center items-center group">
-              <BsYoutube className="text-white text-xl group-hover:text-accent" />
+            <TooltipTrigger asChild>
+              <button className="w-9 h-9 rounded-lg bg-red-500/10 border border-red-500/20 flex justify-center items-center hover:bg-red-500/30 hover:border-red-500/50 transition-all duration-200 group">
+                <BsYoutube className="text-red-400 text-sm group-hover:text-red-300" />
+              </button>
             </TooltipTrigger>
-            <TooltipContent><p>YouTube</p></TooltipContent>
+            <TooltipContent><p>Demo Video</p></TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </Link>
@@ -212,18 +227,77 @@ const ProjectLinks = ({ project }) => (
   </div>
 )
 
+// ── Featured Slide Info ──────────────────────────────────────────────────────
+const FeaturedInfo = ({ project }) => (
+  <motion.div
+    key={project.num}
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.4, ease: "easeOut" }}
+    className="flex flex-col gap-5 h-full justify-between"
+  >
+    <div className="flex flex-col gap-4">
+      {/* Number + badge */}
+      <div className="flex items-center gap-4">
+        <span className="text-[72px] leading-none font-black text-transparent"
+          style={{ WebkitTextStroke: '1px rgba(255,255,255,0.12)' }}>
+          {project.num}
+        </span>
+        <div className="flex flex-col gap-1.5">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-accent/20 border border-accent/40 text-accent text-[10px] font-bold uppercase tracking-[0.15em]">
+            <BsStarFill className="text-[8px]" /> Featured
+          </span>
+          <span className="text-xs text-white/35 font-medium uppercase tracking-widest">
+            {categoryLabels[project.category] || project.category}
+          </span>
+        </div>
+      </div>
+
+      {/* Title */}
+      <div>
+        <h2 className="text-4xl xl:text-5xl font-black text-white leading-[1.05] tracking-tight">
+          {project.title}
+        </h2>
+      </div>
+
+      {/* Description */}
+      <p className="text-white/55 text-sm leading-relaxed max-w-md">
+        {project.description}
+      </p>
+
+      {/* Stack */}
+      <div className="flex flex-wrap gap-1.5">
+        {project.stack.map((item, i) => (
+          <span key={i}
+            className="text-[11px] font-semibold text-accent/80 bg-accent/8 border border-accent/15 px-2.5 py-1 rounded-md tracking-wide">
+            {item.name}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    {/* Links */}
+    <div className="flex items-center gap-4 pt-2">
+      <ProjectLinks project={project} />
+      {!project.live && !project.github && !project.youtube && (
+        <span className="text-xs text-white/25 italic">No public links</span>
+      )}
+    </div>
+  </motion.div>
+)
+
+// ── Main Component ───────────────────────────────────────────────────────────
 const Work = () => {
-  const [featuredProject, setFeaturedProject] = useState(featuredProjects[0])
+  const [activeFeaturedIndex, setActiveFeaturedIndex] = useState(0)
   const [activeCategory, setActiveCategory] = useState(categories[0])
   const [isImageOpen, setIsImageOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState("")
   const [expandedCard, setExpandedCard] = useState(null)
 
-  const handleFeaturedSlideChange = (swiper) => {
-    setFeaturedProject(featuredProjects[swiper.activeIndex])
-  }
+  const featuredProject = featuredProjects[activeFeaturedIndex]
 
-  const openImageModal = (image) => {
+  const openImageModal = (image, e) => {
+    e?.stopPropagation()
     setSelectedImage(image)
     setIsImageOpen(true)
   }
@@ -243,233 +317,309 @@ const Work = () => {
     >
       <div className="container mx-auto">
 
-        {/* ── FEATURED SECTION ─────────────────────────────────── */}
-        <div className="mb-16">
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-8">
-            <BsStarFill className="text-accent text-2xl" />
-            <h2 className="text-3xl font-bold text-white tracking-wide">Featured Projects</h2>
-            <div className="flex-1 h-px bg-white/10 ml-2" />
+        {/* ══ FEATURED SECTION ══════════════════════════════════════════ */}
+        <div className="mb-20">
+
+          {/* Section label */}
+          <div className="flex items-center gap-4 mb-10">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-md bg-accent/20 border border-accent/40 flex items-center justify-center">
+                <BsStarFill className="text-accent text-[11px]" />
+              </div>
+              <h2 className="text-lg font-bold text-white tracking-[0.08em] uppercase">Featured Projects</h2>
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-r from-accent/30 to-transparent" />
+            <span className="text-xs text-white/25 font-mono">{featuredProjects.length} projects</span>
           </div>
 
-          <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-            {/* Info panel */}
-            <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
-              <div className="flex flex-col gap-[24px] h-[50%]">
-                <div className="flex items-center gap-3">
-                  <span className="text-6xl leading-none font-extrabold text-transparent text-outline">
-                    {featuredProject.num}
-                  </span>
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent/20 border border-accent/40 text-accent text-xs font-semibold uppercase tracking-widest">
-                    <BsStarFill className="text-[10px]" /> Featured
-                  </span>
-                </div>
-                <div>
-                  <h2 className="text-[42px] font-bold leading-none text-white capitalize">
-                    {featuredProject.title}
-                  </h2>
-                  <h3 className="text-[20px] font-semibold text-accent capitalize mt-1">
-                    {featuredProject.category} project
-                  </h3>
-                </div>
-                <p className="text-white/60 text-justify text-sm leading-relaxed">
-                  {featuredProject.description}
-                </p>
-                <ul className="flex gap-2 flex-wrap">
-                  {featuredProject.stack.map((item, index) => (
-                    <li key={index} className="text-sm text-accent">
-                      {item.name}{index !== featuredProject.stack.length - 1 && ","}
-                    </li>
-                  ))}
-                </ul>
-                <div className="border border-white/20" />
-                <ProjectLinks project={featuredProject} />
-              </div>
+          {/* Featured layout */}
+          <div className="grid xl:grid-cols-2 gap-10 xl:gap-16 items-start">
+
+            {/* LEFT: Info panel */}
+            <div className="order-2 xl:order-1 xl:pt-4">
+              <FeaturedInfo project={featuredProject} />
             </div>
 
-            {/* Swiper */}
-            <div className="w-full xl:w-[50%]">
-              <Swiper
-                spaceBetween={30}
-                slidesPerView={1}
-                className="xl:h-[520px] mb-12"
-                onSlideChange={handleFeaturedSlideChange}
-              >
-                {featuredProjects.map((project, index) => (
-                  <SwiperSlide key={index} className="w-full">
-                    <div
-                      className="h-[460px] relative group flex justify-center items-center bg-pink-50/20 cursor-pointer"
-                      onClick={() => openImageModal(project.image)}
-                    >
-                      {/* Featured badge on image */}
-                      <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent text-primary text-xs font-bold uppercase tracking-wider shadow-lg">
-                        <BsStarFill className="text-[10px]" /> Featured
-                      </div>
-                      <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10" />
-                      <div className="relative w-full h-full">
+            {/* RIGHT: Slider */}
+            <div className="order-1 xl:order-2">
+              <div className="relative">
+                {/* Decorative glow behind slider */}
+                <div className="absolute -inset-4 rounded-2xl bg-accent/5 blur-2xl pointer-events-none" />
+
+                <Swiper
+                  spaceBetween={24}
+                  slidesPerView={1}
+                  className="rounded-2xl overflow-hidden"
+                  onSlideChange={(swiper) => setActiveFeaturedIndex(swiper.activeIndex)}
+                  style={{ position: 'relative' }}
+                >
+                  {featuredProjects.map((project, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        className="relative h-[380px] xl:h-[460px] cursor-zoom-in overflow-hidden rounded-2xl"
+                        onClick={(e) => openImageModal(project.image, e)}
+                      >
+                        {/* Featured pill */}
+                        <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent text-primary text-[10px] font-black uppercase tracking-[0.12em] shadow-lg shadow-accent/25">
+                          <BsStarFill className="text-[8px]" /> Featured
+                        </div>
+
+                        {/* Project number overlay */}
+                        <div className="absolute bottom-4 right-5 z-20 font-black text-[56px] leading-none text-white/10 select-none">
+                          {project.num}
+                        </div>
+
+                        {/* Overlay gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10" />
+
+                        {/* Image */}
                         <Image
                           src={project.image}
                           layout="fill"
-                          className="object-cover"
+                          className="object-cover transition-transform duration-700 hover:scale-105"
                           alt={project.title}
                         />
+
+                        {/* Bottom info strip */}
+                        <div className="absolute bottom-0 left-0 right-0 z-20 p-5">
+                          <p className="text-white font-bold text-lg leading-tight">{project.title}</p>
+                          <p className="text-white/50 text-xs mt-0.5 capitalize">{project.category}</p>
+                        </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-                <WorkSliderBtns
-                  containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
-                  btnStyles="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
-                />
-              </Swiper>
+                    </SwiperSlide>
+                  ))}
+
+                  <WorkSliderBtns
+                    containerStyles="flex gap-2 absolute right-4 bottom-4 z-30"
+                    btnStyles="w-9 h-9 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-white text-sm flex justify-center items-center hover:bg-accent hover:text-primary hover:border-accent transition-all duration-200"
+                  />
+                </Swiper>
+
+                {/* Dot indicators */}
+                <div className="flex justify-center gap-2 mt-4">
+                  {featuredProjects.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveFeaturedIndex(i)}
+                      className={`transition-all duration-300 rounded-full ${
+                        activeFeaturedIndex === i
+                          ? 'w-6 h-2 bg-accent'
+                          : 'w-2 h-2 bg-white/20 hover:bg-white/40'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* ── DIVIDER ───────────────────────────────────────────── */}
-        <div className="flex items-center gap-4 mb-10">
-          <div className="flex-1 h-px bg-white/10" />
-          <span className="text-white/30 text-sm uppercase tracking-[4px] font-medium">More Projects</span>
-          <div className="flex-1 h-px bg-white/10" />
+        {/* ══ SECTION DIVIDER ════════════════════════════════════════════ */}
+        <div className="flex items-center gap-4 mb-12">
+          <div className="flex-1 h-px bg-white/8" />
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/3">
+            <span className="text-white/30 text-xs uppercase tracking-[0.25em] font-semibold">All Projects</span>
+          </div>
+          <div className="flex-1 h-px bg-white/8" />
         </div>
 
-        {/* ── CATEGORIES TABS ───────────────────────────────────── */}
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-2">
+        {/* ══ CATEGORY TABS ══════════════════════════════════════════════ */}
+        <div className="mb-8 overflow-x-auto pb-2 scrollbar-none">
+          <div className="flex gap-2 min-w-max">
             {categories.map((cat) => {
               const count = otherProjects.filter(p => p.category === cat).length
+              const isActive = activeCategory === cat
               return (
-                <button
+                <motion.button
                   key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold capitalize transition-all duration-300 border ${
-                    activeCategory === cat
-                      ? 'bg-accent text-primary border-accent shadow-[0_0_15px_rgba(var(--accent-rgb),0.4)]'
-                      : 'bg-white/5 text-white/60 border-white/10 hover:border-accent/40 hover:text-white'
-                  }`}
+                  onClick={() => { setActiveCategory(cat); setExpandedCard(null) }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ y: 0, scale: 0.97 }}
+                  className={`
+                    relative flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-semibold
+                    transition-all duration-300 border whitespace-nowrap
+                    ${isActive
+                      ? 'bg-accent text-primary border-accent shadow-[0_4px_20px_rgba(var(--accent-rgb,0,0,0),0.35)]'
+                      : 'bg-white/4 text-white/50 border-white/8 hover:bg-white/8 hover:text-white/80 hover:border-white/20'
+                    }
+                  `}
                 >
-                  {categoryLabels[cat] || cat}
-                  <span className={`ml-2 text-xs rounded-full px-1.5 py-0.5 ${activeCategory === cat ? 'bg-primary/30' : 'bg-white/10'}`}>
+                  <span className="text-base">{categoryIcons[cat]}</span>
+                  <span>{categoryLabels[cat] || cat}</span>
+                  <span className={`
+                    text-[11px] font-bold px-1.5 py-0.5 rounded-md min-w-[20px] text-center
+                    ${isActive ? 'bg-primary/25 text-primary' : 'bg-white/8 text-white/35'}
+                  `}>
                     {count}
                   </span>
-                </button>
+                </motion.button>
               )
             })}
           </div>
         </div>
 
-        {/* ── CATEGORY GRID ─────────────────────────────────────── */}
+        {/* ══ PROJECT GRID ═══════════════════════════════════════════════ */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-16"
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-20"
           >
-            {categoryProjects.map((project, index) => (
-              <motion.div
-                key={project.num}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.25, delay: index * 0.05 }}
-                className="group relative bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-accent/40 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] cursor-pointer"
-                onClick={() => setExpandedCard(expandedCard === project.num ? null : project.num)}
-              >
-                {/* Image */}
-                <div
-                  className="relative h-[200px] overflow-hidden"
-                  onClick={(e) => { e.stopPropagation(); openImageModal(project.image) }}
+            {categoryProjects.map((project, index) => {
+              const isExpanded = expandedCard === project.num
+              return (
+                <motion.div
+                  key={project.num}
+                  initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.06, ease: "easeOut" }}
+                  className={`
+                    group relative flex flex-col rounded-2xl overflow-hidden
+                    border transition-all duration-300 cursor-pointer
+                    ${isExpanded
+                      ? 'bg-white/8 border-accent/50 shadow-[0_0_30px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.06)]'
+                      : 'bg-white/4 border-white/8 hover:bg-white/6 hover:border-white/18 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]'
+                    }
+                  `}
+                  onClick={() => setExpandedCard(isExpanded ? null : project.num)}
                 >
-                  <Image
-                    src={project.image}
-                    layout="fill"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    alt={project.title}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-3 left-3">
-                    <span className="text-xs font-bold uppercase tracking-widest text-white/50 bg-black/40 px-2 py-1 rounded-md">
-                      {categoryLabels[project.category] || project.category}
-                    </span>
-                  </div>
-                </div>
+                  {/* Image */}
+                  <div
+                    className="relative h-[190px] overflow-hidden flex-shrink-0"
+                    onClick={(e) => openImageModal(project.image, e)}
+                  >
+                    <Image
+                      src={project.image}
+                      layout="fill"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      alt={project.title}
+                    />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
 
-                {/* Body */}
-                <div className="p-5">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <span className="text-xs text-white/30 font-mono">#{project.num}</span>
-                      <h3 className="text-lg font-bold text-white leading-tight">{project.title}</h3>
+                    {/* Category chip */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.1em] text-white/70 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/10">
+                        {categoryIcons[project.category]}
+                        {categoryLabels[project.category] || project.category}
+                      </span>
+                    </div>
+
+                    {/* Zoom hint */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                      <div className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                        <BsArrowUpRight className="text-white text-sm rotate-0" />
+                      </div>
+                    </div>
+
+                    {/* Number watermark */}
+                    <div className="absolute bottom-2 right-3 font-black text-4xl leading-none text-white/10 select-none z-10">
+                      {project.num}
                     </div>
                   </div>
 
-                  <AnimatePresence>
-                    {expandedCard === project.num && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="overflow-hidden"
-                      >
-                        <p className="text-white/50 text-sm leading-relaxed mb-3">{project.description}</p>
-                        <ul className="flex flex-wrap gap-1.5 mb-4">
-                          {project.stack.map((item, i) => (
-                            <li key={i} className="text-xs text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20">
-                              {item.name}
-                            </li>
-                          ))}
-                        </ul>
-                        <ProjectLinks project={project} />
-                      </motion.div>
+                  {/* Card body */}
+                  <div className="flex flex-col flex-1 p-4">
+                    {/* Title row */}
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="text-base font-bold text-white leading-tight">{project.title}</h3>
+                      <span className={`text-sm mt-0.5 flex-shrink-0 transition-transform duration-300 text-white/30 ${isExpanded ? 'rotate-180' : ''}`}>
+                        ▾
+                      </span>
+                    </div>
+
+                    {/* Collapsed: show first 4 tags */}
+                    {!isExpanded && (
+                      <div className="flex flex-wrap gap-1.5 mt-1">
+                        {project.stack.slice(0, 4).map((item, i) => (
+                          <span key={i}
+                            className="text-[11px] text-accent/65 bg-accent/6 border border-accent/12 px-2 py-0.5 rounded-md font-medium">
+                            {item.name}
+                          </span>
+                        ))}
+                        {project.stack.length > 4 && (
+                          <span className="text-[11px] text-white/25 px-2 py-0.5">
+                            +{project.stack.length - 4}
+                          </span>
+                        )}
+                      </div>
                     )}
-                  </AnimatePresence>
 
-                  {expandedCard !== project.num && (
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      {project.stack.slice(0, 4).map((item, i) => (
-                        <span key={i} className="text-xs text-accent/70 bg-accent/5 px-2 py-0.5 rounded-full border border-accent/10">
-                          {item.name}
-                        </span>
-                      ))}
-                      {project.stack.length > 4 && (
-                        <span className="text-xs text-white/30 px-2 py-0.5">+{project.stack.length - 4} more</span>
+                    {/* Expanded: full info */}
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.28, ease: "easeOut" }}
+                          className="overflow-hidden"
+                        >
+                          <p className="text-white/50 text-sm leading-relaxed mb-3 mt-1">
+                            {project.description}
+                          </p>
+                          <div className="flex flex-wrap gap-1.5 mb-4">
+                            {project.stack.map((item, i) => (
+                              <span key={i}
+                                className="text-[11px] text-accent/80 bg-accent/10 border border-accent/20 px-2.5 py-0.5 rounded-md font-semibold">
+                                {item.name}
+                              </span>
+                            ))}
+                          </div>
+                          {/* Divider */}
+                          <div className="h-px bg-white/8 mb-3" />
+                          <ProjectLinks project={project} />
+                        </motion.div>
                       )}
-                    </div>
-                  )}
-
-                  <div className="mt-3 text-xs text-white/30 text-right">
-                    {expandedCard === project.num ? '▲ collapse' : '▼ expand'}
+                    </AnimatePresence>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              )
+            })}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Image modal */}
-      {isImageOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
-          <div className="relative bg-white p-4 rounded-lg">
-            <button
-              className="absolute top-4 right-4 rounded-full bg-blue-500 text-3xl"
-              onClick={closeImageModal}
+      {/* ══ IMAGE MODAL ══════════════════════════════════════════════════ */}
+      <AnimatePresence>
+        {isImageOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/85 backdrop-blur-md flex justify-center items-center z-50 p-6"
+            onClick={closeImageModal}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl max-w-4xl w-full"
+              onClick={(e) => e.stopPropagation()}
             >
-              <BsX />
-            </button>
-            <Image
-              src={selectedImage}
-              width={800}
-              height={600}
-              className="object-contain"
-              alt="Full size image"
-            />
-          </div>
-        </div>
-      )}
+              {/* Close button */}
+              <button
+                className="absolute top-3 right-3 z-10 w-9 h-9 rounded-xl bg-black/70 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/90 hover:border-white/30 transition-all duration-200"
+                onClick={closeImageModal}
+              >
+                <BsX className="text-xl" />
+              </button>
+              <Image
+                src={selectedImage}
+                width={900}
+                height={600}
+                className="object-contain w-full"
+                alt="Preview"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.section>
   )
 }
