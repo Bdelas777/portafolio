@@ -7,38 +7,6 @@ import { Tooltip, TooltipContent, TooltipProvider,  TooltipTrigger } from "../..
 import { ScrollArea } from "../../components/ui/scroll-area";
 import {  motion } from "framer-motion"
 
-const about = {
-    title: 'About me ',
-    description: 'I am a Computer Systems Engineering student specializing in high school accounting, with a strong interest in web and iOS development. I am passionate about exploring new technologies and thrive in collaborative environments, whether as a team member or leader. Adaptability is one of my strengths, enabling me to excel in diverse situations, while I prioritize empathy in all professional interactions.',
-    info: [
-        {
-          fieldname: "Name",
-          fieldValue: "Bernardo de la Sierra"
-        },
-        {
-          fieldname: "Phone",
-          fieldValue: "(52+) 231 205 2221"
-        },
-        {
-          fieldname: "Instagram",
-          fieldValue: "bdelas767"
-        },
-        {
-          fieldname: "Nationality",
-          fieldValue: "Mexican"
-        },
-        {
-          fieldname: "Email",
-          fieldValue: "bdelasierrar@gmail.com"
-        },
-        {
-          fieldname: "Languages",
-          fieldValue: "English, Spanish"
-        },
-        
-    ]
-  }
-
 const experience = {
   icon: "/assets/resume/badge.svg",
   title: 'My experience',
