@@ -293,7 +293,7 @@ const ProjectModal = ({ project, onClose }) => {
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
-const Work = () => {
+const Projects = () => {
   const [activeCategory, setActiveCategory] = useState(categories[0])
   const [modalProject, setModalProject] = useState(null)
   const categoryProjects = otherProjects.filter(p => p.category === activeCategory)
@@ -526,4 +526,4 @@ const Work = () => {
   )
 }
 
-export default Work
+export default Projects
