@@ -164,6 +164,12 @@ const allProjects = [
     stack: [{ name: 'Python' }],
     image: '/assets/work/Compi.png', live: '', github: 'https://github.com/Bdelas777/CompiladoresElda', youtube: ''
   },
+  {
+    num: '27', category: "full stack", title: "AutoMax", featured: false,
+    description: "Full-stack web application for managing automotive sales to learn django based on a course.",
+    stack: [{ name: 'Django' }],
+    image: '/assets/work/django.png', live: '', github: 'https://github.com/Bdelas777/CompiladoresElda', youtube: ''
+  },
 ]
 
 const featuredProjects = allProjects.filter(p => p.featured)
