@@ -11,7 +11,7 @@ const allProjects = [
     num: '01', category: "full stack", title: "Vita", featured: true,
     description: "Vita is a comprehensive health application that offers personalized recommendations for nutrition, exercise, and sleep. Using artificial intelligence, it suggests exercise routines and analyzes calories and nutrients from food photographs.",
     stack: [{ name: 'Next' }, { name: 'Tailwind' }, { name: 'Gemini' }, { name: 'Open Ai' }, { name: 'Stripe' }, { name: 'WhatsApp Api' }, { name: 'Drizzle' }, { name: 'Cypress' }, { name: 'Vitest' }, { name: 'AWS' }, { name: 'Postgress' }, { name: 'Typescript' }, { name: 'Github Actions' }],
-    image: '/assets/work/vitapro.png', live: 'https://d8vd0r6uuds8z.cloudfront.net/', github: '', youtube: 'https://www.youtube.com/watch?si=O_9DcWiUeaAuGUey&v=dXF64rgcdLI&feature=youtu.be'
+    image: '/assets/work/vitapro.png', live: '', github: '', youtube: 'https://www.youtube.com/watch?si=O_9DcWiUeaAuGUey&v=dXF64rgcdLI&feature=youtu.be'
   },
   {
     num: '02', category: "full stack", title: "Maes", featured: true,
@@ -35,7 +35,7 @@ const allProjects = [
     num: '23', category: "full stack", title: "ConsoliBanco", featured: true,
     description: "ConsoliBanco allows users to securely connect multiple bank accounts, view their total balance, review recent and categorized transactions, and transfer funds between accounts. Additionally, it generates financial analysis charts and offers tools to create personalized financial plans.",
     stack: [{ name: 'Next.js' }, { name: 'TypeScript' }, { name: 'Appwrite' }, { name: 'Plaid' }, { name: 'Dwolla' }, { name: 'Gemini' }, { name: 'Sentry' }],
-    image: '/assets/work/ConsoliBanco.png', live: 'https://consoli-banco.vercel.app/sign-in', github: 'https://github.com/Bdelas777/ConsoliBanco', youtube: ''
+    image: '/assets/work/ConsoliBanco.png', live: '', github: 'https://github.com/Bdelas777/ConsoliBanco', youtube: ''
   },
   {
     num: '24', category: "full stack", title: "CancerMama", featured: true,
