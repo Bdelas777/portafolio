@@ -116,6 +116,7 @@ const education = {
     'B.S. in Computer Science from Tecnológico de Monterrey, complemented by AWS certifications, industry courses, and continuous self-directed learning across the full stack.',
   items: [
     { institution: 'Tecnológico de Monterrey', degree: 'B.S. in Computer Science', duration: '2021 – 2025' },
+    { institution: 'Udemy', degree: 'Python | machine learning', duration: 'Apr 2026' },
     { institution: 'Udemy', degree: 'Python & Django | The complete web development course', duration: 'Mar 2026' },
     { institution: 'AWS', degree: 'AWS Certified Cloud Practitioner', duration: 'Aug 2024' },
     { institution: 'AWS', degree: 'Getting Started DevOps on AWS', duration: 'Aug 2024' },
